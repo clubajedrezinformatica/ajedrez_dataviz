@@ -125,8 +125,10 @@ for i, tasa in enumerate(tasas_crecimiento):
         weight="heavy",
     )
 
-# La sección de la leyenda y el guardado de la figura se mantiene igual
-# ax.legend()
-# plt.grid(axis='y', linestyle='--', alpha=0.7)
-# plt.tight_layout()
-# plt.savefig('grafico_ajedrez_unlp_crecimiento.png', dpi=300)
+# Mostrar Leyenda y Ajustes Finales (Se mantiene igual)
+ax.legend()
+plt.grid(axis="y", linestyle="--", alpha=0.7)
+plt.tight_layout()
+
+plt.savefig("grafico_ajedrez_unlp_crecimiento.png", dpi=300)
+# plt.show()
