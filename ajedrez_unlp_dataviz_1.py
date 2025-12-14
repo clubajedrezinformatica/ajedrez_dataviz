@@ -45,9 +45,8 @@ bar_2024 = ax.bar(
 
 
 # --- 3. CREACIÓN DEL GRÁFICO BASE (CORREGIDO) ---
-fig, ax = plt.subplots(figsize=(11, 7))
-# Ajuste para dar espacio al título y a la flecha superior
-plt.subplots_adjust(top=0.85, right=0.95)
+fig, ax = plt.subplots(figsize=(10, 6))
+
 # Barras 2024 (Se mantiene igual)
 barra_2024 = ax.bar(
     x - bar_anchor / 2,
@@ -100,39 +99,34 @@ ax.set_xticks(x)
 ax.set_xticklabels(["Jugadores Totales", "Equipos", "Jugadores Rankeados"], fontsize=12)
 
 
-# --- 5. ANOTACIÓN DEL CRECIMIENTO (+XX%) con Flechas y Resalte ---
+# --- 5. ANOTACIÓN DEL CRECIMIENTO (+XX%) DENTRO DE LA BARRA ---
 
-# Coordenadas y offset para la ANOTACIÓN lateral y superior
-offset_x = 0.25  # REDUCIDO: Mover 0.25 unidades (evita que se salga del costado)
-offset_y = 7  # REDUCIDO: Mover 7 unidades hacia arriba (evita chocar con el título)
-
-# Creamos un loop para anotar el crecimiento sobre TODAS las barras de 2025
+# Recorremos cada una de las 3 barras de 2025
 for i, tasa in enumerate(tasas_crecimiento):
 
     rect = barra_2025[i]
-    x_start = rect.get_x() + rect.get_width() / 2
-    altura_barra = rect.get_height()
+    x_pos = rect.get_x() + rect.get_width() / 2  # Centro de la barra en X
+    altura_barra = rect.get_height()  # Altura total de la barra (ej: 52, 16, 17)
 
-    # ANOTACIÓN DEL TEXTO (+XX%)
+    # Posicionamos el texto:
+    # 1. 'xy=(x_pos, altura_barra)': Punto de referencia en la punta de la barra.
+    # 2. 'xytext=(0, -10)': Desplazamiento de 10 puntos HACIA ABAJO (negativo)
+    # 3. 'va='top'': Alineamos la parte superior del texto con el desplazamiento (-10 puntos).
+
     ax.annotate(
         f"+{tasa:.0f}%",
-        xy=(x_start, altura_barra),
-        xytext=(x_start + offset_x, altura_barra + offset_y),
-        textcoords="data",
-        fontsize=16,
-        color=color_highlight,
+        xy=(x_pos, altura_barra),
+        xytext=(0, -10),  # Desplazamiento: 10 puntos HACIA ABAJO (dentro de la barra)
+        textcoords="offset points",
+        ha="center",
+        va="top",  # 'va' en 'top' para que el texto quede centrado y bien alineado.
+        fontsize=14,
+        color=color_highlight,  # Color de alto impacto
         weight="heavy",
-        arrowprops=dict(
-            arrowstyle="->",
-            color=color_highlight,
-            lw=1.5,
-            connectionstyle="arc3,rad=0.1",
-        ),
     )
-# Mostrar Leyenda y Ajustes Finales (Se mantiene igual)
-ax.legend()
-plt.grid(axis="y", linestyle="--", alpha=0.7)
-plt.tight_layout()
 
-plt.savefig("grafico_ajedrez_unlp_crecimiento.png", dpi=300)
-# plt.show()
+# La sección de la leyenda y el guardado de la figura se mantiene igual
+# ax.legend()
+# plt.grid(axis='y', linestyle='--', alpha=0.7)
+# plt.tight_layout()
+# plt.savefig('grafico_ajedrez_unlp_crecimiento.png', dpi=300)
