@@ -45,8 +45,9 @@ bar_2024 = ax.bar(
 
 
 # --- 3. CREACIÓN DEL GRÁFICO BASE (CORREGIDO) ---
-fig, ax = plt.subplots(figsize=(10, 6))
-
+fig, ax = plt.subplots(figsize=(11, 7))
+# Ajuste para dar espacio al título y a la flecha superior
+plt.subplots_adjust(top=0.85, right=0.95)
 # Barras 2024 (Se mantiene igual)
 barra_2024 = ax.bar(
     x - bar_anchor / 2,
@@ -91,7 +92,7 @@ ax.set_title(
     "AJEDREZ INTERFACULTADES | UNLP 2024-2025",
     fontsize=14,
     weight="bold",
-    pad=20,
+    pad=35,
 )
 ax.set_ylabel("Cantidad", fontsize=12)
 ax.set_xticks(x)
@@ -102,38 +103,32 @@ ax.set_xticklabels(["Jugadores Totales", "Equipos", "Jugadores Rankeados"], font
 # --- 5. ANOTACIÓN DEL CRECIMIENTO (+XX%) con Flechas y Resalte ---
 
 # Coordenadas y offset para la ANOTACIÓN lateral y superior
-offset_x = 0.5  # Mover 0.5 unidades a la derecha del centro de la barra 2025
-offset_y = 5  # Mover 5 unidades hacia arriba
+offset_x = 0.25  # REDUCIDO: Mover 0.25 unidades (evita que se salga del costado)
+offset_y = 7  # REDUCIDO: Mover 7 unidades hacia arriba (evita chocar con el título)
 
 # Creamos un loop para anotar el crecimiento sobre TODAS las barras de 2025
-# Las anotaciones se harán en la coordenada [i] del array x, que ya está ajustado al centro de la métrica.
 for i, tasa in enumerate(tasas_crecimiento):
 
-    # Obtener la posición x base y la altura de la barra 2025 (índice i)
     rect = barra_2025[i]
-
-    # x_start es el centro de la barra 2025
     x_start = rect.get_x() + rect.get_width() / 2
     altura_barra = rect.get_height()
 
     # ANOTACIÓN DEL TEXTO (+XX%)
     ax.annotate(
         f"+{tasa:.0f}%",
-        xy=(x_start, altura_barra),  # Punto de inicio para la flecha
-        xytext=(x_start + offset_x, altura_barra + offset_y),  # Punto donde va el texto
+        xy=(x_start, altura_barra),
+        xytext=(x_start + offset_x, altura_barra + offset_y),
         textcoords="data",
         fontsize=16,
         color=color_highlight,
         weight="heavy",
-        # Propiedades de la Flecha (Arrowprops)
         arrowprops=dict(
-            arrowstyle="->",  # Estilo de la flecha
+            arrowstyle="->",
             color=color_highlight,
             lw=1.5,
-            connectionstyle="arc3,rad=0.1",  # Curva ligera para mejor visualización
+            connectionstyle="arc3,rad=0.1",
         ),
     )
-
 # Mostrar Leyenda y Ajustes Finales (Se mantiene igual)
 ax.legend()
 plt.grid(axis="y", linestyle="--", alpha=0.7)
