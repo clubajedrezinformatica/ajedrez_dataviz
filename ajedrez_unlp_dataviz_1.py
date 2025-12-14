@@ -66,10 +66,7 @@ barra_2025 = ax.bar(
 )
 
 
-# --- 4. DETALLES Y ANOTACIONES DE DATOS --
 # --- 4. DETALLES Y ANOTACIONES DE DATOS ---
-
-
 # Función para añadir las etiquetas de valor sobre las barras
 def autolabel(rects, df_col):
     for rect, valor in zip(rects, df_col):
@@ -102,33 +99,45 @@ ax.set_xticks(x)
 ax.set_xticklabels(["Jugadores Totales", "Equipos", "Jugadores Rankeados"], fontsize=12)
 
 
-# --- 5. ANOTACIÓN DEL CRECIMIENTO (+XX%) ---
+# --- 5. ANOTACIÓN DEL CRECIMIENTO (+XX%) con Flechas y Resalte ---
+
+# Coordenadas y offset para la ANOTACIÓN lateral y superior
+offset_x = 0.5  # Mover 0.5 unidades a la derecha del centro de la barra 2025
+offset_y = 5  # Mover 5 unidades hacia arriba
+
 # Creamos un loop para anotar el crecimiento sobre TODAS las barras de 2025
-
+# Las anotaciones se harán en la coordenada [i] del array x, que ya está ajustado al centro de la métrica.
 for i, tasa in enumerate(tasas_crecimiento):
-    # Obtener la posición x y la altura de la barra 2025 (índice i)
-    rect = barra_2025[i]
-    posicion_x = rect.get_x() + rect.get_width() / 2
-    altura = rect.get_height()
 
+    # Obtener la posición x base y la altura de la barra 2025 (índice i)
+    rect = barra_2025[i]
+
+    # x_start es el centro de la barra 2025
+    x_start = rect.get_x() + rect.get_width() / 2
+    altura_barra = rect.get_height()
+
+    # ANOTACIÓN DEL TEXTO (+XX%)
     ax.annotate(
         f"+{tasa:.0f}%",
-        xy=(posicion_x, altura),
-        xytext=(0, 5),  # Mover ligeramente hacia arriba
-        textcoords="offset points",
-        ha="center",
-        va="bottom",
-        fontsize=14,
+        xy=(x_start, altura_barra),  # Punto de inicio para la flecha
+        xytext=(x_start + offset_x, altura_barra + offset_y),  # Punto donde va el texto
+        textcoords="data",
+        fontsize=16,
         color=color_highlight,
         weight="heavy",
+        # Propiedades de la Flecha (Arrowprops)
+        arrowprops=dict(
+            arrowstyle="->",  # Estilo de la flecha
+            color=color_highlight,
+            lw=1.5,
+            connectionstyle="arc3,rad=0.1",  # Curva ligera para mejor visualización
+        ),
     )
 
-
-# Mostrar Leyenda y Ajustes Finales
+# Mostrar Leyenda y Ajustes Finales (Se mantiene igual)
 ax.legend()
 plt.grid(axis="y", linestyle="--", alpha=0.7)
 plt.tight_layout()
 
 plt.savefig("grafico_ajedrez_unlp_crecimiento.png", dpi=300)
-# Puedes comentar o eliminar plt.show() para evitar el UserWarning
 # plt.show()
