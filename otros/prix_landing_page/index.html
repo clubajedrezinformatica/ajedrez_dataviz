@@ -155,11 +155,12 @@
 
             async function fetchLichessData() {
                 try {
-                    const response = await fetch(`https://lichess.org/api/tournament/${TOURNAMENT_ID}`);
-                    const data = await response.json();
+                    // CAMBIO CLAVE: Agregamos /results al final de la URL
+                    const response = await fetch(`https://lichess.org/api/tournament/${TOURNAMENT_ID}/results?nb=100`);
+                    const text = await response.text();
 
-                    // Accedemos a la lista completa de jugadores dentro de standing
-                    const standings = data.standing && data.standing.players ? data.standing.players : [];
+                    // El formato NDJSON requiere procesar línea por línea
+                    const standings = text.trim().split('\n').map(line => JSON.parse(line));
 
                     const tbody = document.getElementById('tabla-cuerpo');
 
@@ -168,14 +169,13 @@
                         return;
                     }
 
-                    // Generamos las filas para TODOS los jugadores inscriptos
                     const playersList = standings.map((player, index) => {
                         return `
                             <tr class="border-b border-slate-700 hover:bg-slate-800/50 transition-colors">
                                 <td class="p-3 text-center text-slate-400 font-mono">${index + 1}</td>
-                                <td class="p-3 font-semibold text-white">${player.name}</td>
+                                <td class="p-3 font-semibold text-white">${player.username}</td>
                                 <td class="p-3 text-center text-yellow-400 font-mono">${player.rating || 'N/C'}</td>
-                                <td class="p-3 text-center text-cyan-400 font-bold">${player.score !== undefined ? player.score : 0}</td>
+                                <td class="p-3 text-center text-cyan-400 font-bold">${player.score || 0}</td>
                             </tr>
                         `;
                     }).join('');
@@ -183,8 +183,8 @@
                     tbody.innerHTML = playersList;
 
                 } catch (error) {
-                    console.error('Error:', error);
-                    document.getElementById('tabla-cuerpo').innerHTML = `<tr><td colspan="4" class="p-4 text-center text-red-400">Error de conexión</td></tr>`;
+                    console.error('Error al obtener la lista completa:', error);
+                    document.getElementById('tabla-cuerpo').innerHTML = `<tr><td colspan="4" class="p-4 text-center text-red-400">Error al cargar la lista completa</td></tr>`;
                 }
             }
 
