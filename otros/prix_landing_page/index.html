@@ -140,9 +140,10 @@
             <table id="leaderboard">
                 <thead>
                     <tr class="bg-slate-800 text-cyan-300">
-                        <th class="p-2 text-left">#</th>
+                        <th class="p-2 text-left">Posición</th>
                         <th class="p-2 text-left">Jugador</th>
                         <th class="p-2 text-center">Elo (Blitz)</th>
+                        <th class="p-2 text-center">Puntos (total)</th>
                     </tr>
                 </thead>
                 <tbody id="tabla-cuerpo">
@@ -172,7 +173,7 @@
                 // Si aún no hay inscriptos, mostramos un mensaje amigable
                 if (standings.length === 0) {
                     document.getElementById('tabla-cuerpo').innerHTML = `
-                        <tr><td colspan="3" class="p-4 text-center text-slate-400">Esperando los primeros inscriptos...</td></tr>
+                        <tr><td colspan="4" class="p-4 text-center text-slate-400">Esperando los primeros inscriptos...</td></tr>
                     `;
                     return;
                 }
@@ -183,6 +184,7 @@
                             <td class="p-2 text-slate-400">${index + 1}</td>
                             <td class="p-2 font-semibold text-white">${player.name}</td>
                             <td class="p-2 text-center text-yellow-400 font-mono">${player.rating || 'N/C'}</td>
+                            <td class="p-2 text-center text-cyan-400 font-bold">${player.score || 0}</td>
                         </tr>
                     `;
                 }).join('');
