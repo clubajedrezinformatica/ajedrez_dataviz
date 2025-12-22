@@ -132,78 +132,66 @@
             </table>
         </div> -->
 
-        <div class="leaderboard-card">
-            <!-- <h2>Acción en Vivo (Fecha Actual)</h2> -->
-            <h2>
-                <h2 class="text-xl font-bold mb-4 text-cyan-400">Inscriptos al Prix Online 2026</h2>
-            </h2>
-            <table id="leaderboard">
-                <thead>
-                    <tr class="bg-slate-800 text-cyan-300">
-                        <th class="p-2 text-left">Posición</th>
-                        <th class="p-2 text-left">Jugador</th>
-                        <th class="p-2 text-center">Elo (Blitz)</th>
-                        <th class="p-2 text-center">Puntos (total)</th>
-                    </tr>
-                </thead>
-                <tbody id="tabla-cuerpo">
-                    <tr>
-                        <td colspan="3">Cargando datos de Lichess...</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-
-    <script>
-        // REEMPLAZAR con el ID del torneo de Lichess una vez creado
-        const TOURNAMENT_ID = 'JL4yzCGi';
-
-        async function fetchLichessData() {
-            try {
-                const response = await fetch(`https://lichess.org/api/tournament/${TOURNAMENT_ID}`);
-                if (!response.ok) throw new Error('Torneo no encontrado');
-
-                const data = await response.json();
-
-                // Lichess ubica a los jugadores en data.standing o data.standing.players dependiendo del estado
-                // Usamos una validación simple para asegurar que tenemos el array
-                const standings = data.standing ? data.standing.players : [];
-
-                // Si aún no hay inscriptos, mostramos un mensaje amigable
-                if (standings.length === 0) {
-                    document.getElementById('tabla-cuerpo').innerHTML = `
-                        <tr><td colspan="4" class="p-4 text-center text-slate-400">Esperando los primeros inscriptos...</td></tr>
-                    `;
-                    return;
-                }
-
-                const playersList = standings.map((player, index) => {
-                    return `
-                        <tr class="border-b border-slate-700 hover:bg-slate-800/50 transition-colors">
-                            <td class="p-2 text-slate-400">${index + 1}</td>
-                            <td class="p-2 font-semibold text-white">${player.name}</td>
-                            <td class="p-2 text-center text-yellow-400 font-mono">${player.rating || 'N/C'}</td>
-                            <td class="p-2 text-center text-cyan-400 font-bold">${player.score || 0}</td>
+        <div class="flex justify-center w-full px-4">
+            <div class="leaderboard-card mx-auto max-w-3xl w-full bg-slate-900 rounded-lg shadow-xl overflow-hidden">
+                <table class="w-full border-collapse">
+                    <thead>
+                        <tr class="bg-slate-800 text-cyan-300">
+                            <th class="p-3 text-center w-16">Posición</th>
+                            <th class="p-3 text-left">Jugador</th>
+                            <th class="p-3 text-center">Elo (Blitz)</th>
+                            <th class="p-3 text-center">Puntos (Acum.)</th>
                         </tr>
-                    `;
-                }).join('');
+                    </thead>
+                    <tbody id="tabla-cuerpo">
+                    </tbody>
+                </table>
+            </div>
+        </div>
 
-                // ASEGURATE que en tu HTML el ID del <tbody> sea 'tabla-cuerpo'
-                document.getElementById('tabla-cuerpo').innerHTML = playersList;
+        <script>
+            // REEMPLAZAR con el ID del torneo de Lichess una vez creado
+            const TOURNAMENT_ID = 'JL4yzCGi';
 
-            } catch (error) {
-                console.error('Error al obtener datos de Lichess:', error);
-                document.getElementById('tabla-cuerpo').innerHTML = `
-                    <tr><td colspan="3" class="p-4 text-center text-red-400">Error al cargar inscriptos</td></tr>
-                `;
+            async function fetchLichessData() {
+                try {
+                    const response = await fetch(`https://lichess.org/api/tournament/${TOURNAMENT_ID}`);
+                    const data = await response.json();
+
+                    // Accedemos a la lista completa de jugadores dentro de standing
+                    const standings = data.standing && data.standing.players ? data.standing.players : [];
+
+                    const tbody = document.getElementById('tabla-cuerpo');
+
+                    if (standings.length === 0) {
+                        tbody.innerHTML = `<tr><td colspan="4" class="p-4 text-center text-slate-400">Esperando inscriptos...</td></tr>`;
+                        return;
+                    }
+
+                    // Generamos las filas para TODOS los jugadores inscriptos
+                    const playersList = standings.map((player, index) => {
+                        return `
+                            <tr class="border-b border-slate-700 hover:bg-slate-800/50 transition-colors">
+                                <td class="p-3 text-center text-slate-400 font-mono">${index + 1}</td>
+                                <td class="p-3 font-semibold text-white">${player.name}</td>
+                                <td class="p-3 text-center text-yellow-400 font-mono">${player.rating || 'N/C'}</td>
+                                <td class="p-3 text-center text-cyan-400 font-bold">${player.score !== undefined ? player.score : 0}</td>
+                            </tr>
+                        `;
+                    }).join('');
+
+                    tbody.innerHTML = playersList;
+
+                } catch (error) {
+                    console.error('Error:', error);
+                    document.getElementById('tabla-cuerpo').innerHTML = `<tr><td colspan="4" class="p-4 text-center text-red-400">Error de conexión</td></tr>`;
+                }
             }
-        }
 
-        // Actualiza cada 30 segundos
-        fetchLichessData();
-        setInterval(fetchLichessData, 30000);
-    </script>
+            // Actualiza cada 30 segundos
+            fetchLichessData();
+            setInterval(fetchLichessData, 30000);
+        </script>
 </body>
 
 </html>
