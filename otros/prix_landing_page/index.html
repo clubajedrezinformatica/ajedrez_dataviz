@@ -133,13 +133,16 @@
         </div> -->
 
         <div class="leaderboard-card">
-            <h2>Acción en Vivo (Fecha Actual)</h2>
+            <!-- <h2>Acción en Vivo (Fecha Actual)</h2> -->
+            <h2>
+                <h2 class="text-xl font-bold mb-4 text-cyan-400">Inscriptos al Prix Online</h2>
+            </h2>
             <table id="leaderboard">
                 <thead>
-                    <tr>
-                        <th>Pos</th>
-                        <th>Usuario</th>
-                        <th>Puntos (hoy)</th>
+                    <tr class="bg-slate-800 text-cyan-300">
+                        <th class="p-2 text-left">#</th>
+                        <th class="p-2 text-left">Jugador</th>
+                        <th class="p-2 text-center">Elo (Blitz)</th>
                     </tr>
                 </thead>
                 <tbody id="leaderboard-body">
@@ -163,17 +166,17 @@
                 const tbody = document.getElementById('leaderboard-body');
                 tbody.innerHTML = '';
 
-                // Tomamos los primeros 10 jugadores
-                data.standing.players.slice(0, 10).forEach((player, index) => {
-                    const row = `
-                        <tr>
-                            <td class="pos">${index + 1}</td>
-                            <td>${player.name}</td>
-                            <td>${player.score}</td>
+                const playersList = data.standing.map((player, index) => {
+                    return `
+                        <tr class="border-b border-slate-700 hover:bg-slate-800/50 transition-colors">
+                            <td class="p-2">${index + 1}</td>
+                            <td class="p-2 font-semibold text-white">${player.name}</td>
+                            <td class="p-2 text-center text-yellow-400">${player.rating || 'N/C'}</td>
                         </tr>
                     `;
-                    tbody.innerHTML += row;
-                });
+                }).join('');
+
+                document.getElementById('tabla-cuerpo').innerHTML = playersList;
             } catch (error) {
                 console.error('Error al obtener datos de Lichess:', error);
             }
