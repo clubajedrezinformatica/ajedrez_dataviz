@@ -229,4 +229,73 @@
             { user: "DLelouche", pts: 16 }, { user: "lemniscata18", pts: 16 },
             { user: "grauclub", pts: 14 }, { user: "ominoso", pts: 14 },
             { user: "La_Faustineta", pts: 13 }, { user: "jugador_79", pts: 12 },
-            { user: "Mecamd
+            { user: "Mecamdane", pts: 11 }, { user: "dfarchich", pts: 9 },
+            { user: "misting", pts: 9 }, { user: "Santiluison_99", pts: 8 },
+            { user: "santilointenta", pts: 8 }, { user: "alex2018inf", pts: 8 },
+            { user: "brunoblanco", pts: 8 }, { user: "AgusDF", pts: 8 },
+            { user: "christianOpsi", pts: 8 }, { user: "Flexotanil", pts: 6 },
+            { user: "cascarudopampero", pts: 6 }, { user: "Luchonet", pts: 4 },
+            { user: "Tomimartinez95", pts: 4 }, { user: "ThiagoDTL", pts: 4 },
+            { user: "DaniLeonina00", pts: 4 }, { user: "Candecrig", pts: 2 },
+            { user: "evaristom", pts: 2 }, { user: "cristianhacker", pts: 2 },
+            { user: "gaston1977", pts: 1 }, { user: "luquettibahia", pts: 0 },
+            { user: "oterobarbi", pts: 0 }, { user: "nicootina", pts: 0 },
+            { user: "patovichm", pts: 0 }, { user: "MarioBross2004", pts: 0 },
+            { user: "caretofobia666", pts: 0 }, { user: "Quique2876", pts: 0 },
+            { user: "SBTommy", pts: 0 }, { user: "Zorresco", pts: 0 },
+            { user: "KETEMETO2", pts: 0 }, { user: "Mfjha", pts: 0 },
+            { user: "rodri_garcia", pts: 0 }, { user: "manucho18", pts: 0 }
+        ];
+
+        const TOURNAMENT_ID = 'JL4yzCGi';
+
+        function renderGeneral() {
+            const tbody = document.getElementById('tabla-general-cuerpo');
+            PRIX_GENERAL.sort((a, b) => b.pts - a.pts);
+            tbody.innerHTML = PRIX_GENERAL.map((p, i) => `
+                <tr>
+                    <td class="col-pos text-pink">${i + 1}</td>
+                    <td class="col-user" style="color:white; font-weight:bold;">${p.user}</td>
+                    <td class="col-pts text-cyan">${p.pts}</td>
+                </tr>
+            `).join('');
+        }
+
+        async function fetchLichessData() {
+            try {
+                const response = await fetch(`https://lichess.org/api/tournament/${TOURNAMENT_ID}/results?nb=50`);
+                if (!response.ok) return;
+                const text = await response.text();
+                const standings = text.trim().split('\n').filter(l => l).map(line => JSON.parse(line));
+                const tbody = document.getElementById('tabla-fecha-cuerpo');
+
+                if (standings.length === 0) {
+                    tbody.innerHTML = `<tr><td colspan="3" style="text-align:center">Esperando inicio...</td></tr>`;
+                    return;
+                }
+
+                tbody.innerHTML = standings.map((player, index) => `
+                    <tr>
+                        <td class="col-pos text-pink">${index + 1}</td>
+                        <td class="col-user" style="color:white; font-weight:bold;">${player.username}</td>
+                        <td class="col-pts text-cyan">${player.score || 0}</td>
+                    </tr>
+                `).join('');
+            } catch (e) { console.error(e); }
+        }
+
+        function showTab(tab) {
+            const isGen = tab === 'general';
+            document.getElementById('tab-general').classList.toggle('hidden', !isGen);
+            document.getElementById('tab-fecha').classList.toggle('hidden', isGen);
+            document.getElementById('btn-gen').classList.toggle('active', isGen);
+            document.getElementById('btn-fec').classList.toggle('active', !isGen);
+        }
+
+        renderGeneral();
+        fetchLichessData();
+        setInterval(fetchLichessData, 30000);
+    </script>
+</body>
+
+</html>
