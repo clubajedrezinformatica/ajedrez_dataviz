@@ -164,6 +164,28 @@
             color: var(--neon-cyan);
             font-weight: bold;
         }
+
+        /* --- RESALTADO TOP 5 ACUMULADO --- */
+        #tabla-general-cuerpo tr:nth-child(-n+5) {
+            background: rgba(0, 242, 255, 0.08);
+            /* Cian muy sutil */
+            border-left: 3px solid var(--neon-cyan);
+            box-shadow: inset 5px 0 10px rgba(0, 242, 255, 0.1);
+        }
+
+        /* El #1 con un toque extra de "campeón" */
+        #tabla-general-cuerpo tr:nth-child(1) {
+            background: rgba(255, 0, 85, 0.1);
+            /* Rosa sutil para el líder */
+            border-left: 4px solid var(--neon-pink);
+        }
+
+        /* Ajuste de brillo para los nombres del Top 5 */
+        #tabla-general-cuerpo tr:nth-child(-n+5) .col-user {
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+            font-size: 0.95rem;
+            /* Un pelín más grande */
+        }
     </style>
 </head>
 
@@ -181,7 +203,7 @@
 
         <div class="tabs">
             <button id="btn-gen" class="tab-btn active" onclick="showTab('general')">Tabla General</button>
-            <button id="btn-fec" class="tab-btn" onclick="showTab('fecha')">Fecha 3 (En Vivo)</button>
+            <button id="btn-fec" class="tab-btn" onclick="showTab('fecha')">Fecha 4 (En Vivo)</button>
         </div>
 
         <div id="tab-general" class="leaderboard-card">
@@ -199,7 +221,7 @@
         </div>
 
         <div id="tab-fecha" class="leaderboard-card hidden">
-            <h2 style="color: var(--neon-cyan);">Resultados Fecha 3</h2>
+            <h2 style="color: var(--neon-cyan);">Resultados Fecha 4</h2>
             <table>
                 <thead>
                     <tr>
@@ -219,22 +241,20 @@
 
     <script>
         const PRIX_GENERAL = [
-            { user: "LuchiniFrank", pts: 61}, { user: "Ajedrezfacu", pts: 60 }, { user: "mago_pol", pts: 54}, { user: "MiyuKoto", pts: 50}, { user: "MTJRFAN2", pts: 46 }, 
-            { user: "grauclub", pts: 46}, { user: "Tomimartinez95", pts: 43 }, { user: "naty_la_25", pts: 42 }, { user: "poder-ozo", pts: 28 }, {user: "FuerzasArmadas", pts: 27}, 
-            { user: "Polyamor", pts: 26 }, { user: "dfarchich", pts: 25 }, { user: "M3TR3STRO", pts: 24 }, { user: "jugador_79", pts: 22 }, { user: "ikeandas", pts: 21 }, 
-            { user: "Tuviejateama", pts: 20 }, { user: "Santiluison_99", pts: 20 }, { user: "Floqui77", pts: 20}, { user: "Mecamdane", pts: 18 }, { user: "AgusDF", pts: 18 }, 
-            { user: "santiromero1", pts: 18}, { user: "seacabolamentira2", pts:17}, { user: "memidepe", pts: 16 }, { user: "franky073", pts: 16 }, { user: "DLelouche", pts: 16 },
-            { user: "lemniscata18", pts: 16 }, { user: "INCOGNITOS", pts: 16}, { user: "ominoso", pts: 14 }, { user: "La_Faustineta", pts: 13 },  { user: "alex2018inf", pts: 12 }, { user: "efarias", pts: 12}, 
-            { user: "caramto15", pts: 10}, { user: "Gia_19", pts: 10}, { user: "gaston1977", pts: 9 }, { user: "misting", pts: 9 }, { user: "santilointenta", pts: 8 },
-            { user: "brunoblanco", pts: 8 }, { user: "christianOpsi", pts: 8 }, { user: "Flexotanil", pts: 6 }, { user: "cristianhacker", pts: 6 }, { user: "cascarudopampero", pts: 6 }, 
-            { user:"PaTriPErO", pts: 5}, { user: "Luchonet", pts: 4 }, { user: "ThiagoDTL", pts: 4 }, { user: "DaniLeonina00", pts: 4 }, { user: "Candecrig", pts: 2 }, 
-            { user: "evaristom", pts: 2 }, { user: "luquettibahia", pts: 0 }, { user: "oterobarbi", pts: 0 }, { user: "nicootina", pts: 0 }, { user: "patovichm", pts: 0 }, 
-            { user: "MarioBross2004", pts: 0 }, { user: "caretofobia666", pts: 0 }, { user: "Quique2876", pts: 0 }, { user: "SBTommy", pts: 0 }, { user: "Zorresco", pts: 0 }, 
-            { user: "KETEMETO2", pts: 0 }, { user: "Mfjha", pts: 0 }, { user: "rodri_garcia", pts: 0 }, { user: "manucho18", pts: 0 }, {user: "dfarchich1", pts: 0}, 
-            { user: "Caballodetroya2022", pts:0}, {user:"LEO_LaPlata", pts:0}
+            { user: "LuchiniFrank", pts: 99 }, { user: "Tomimartinez95", pts: 78 }, { user: "MiyuKoto", pts: 75 }, { user: "MTJRFAN2", pts: 67 }, { user: "naty_la_25", pts: 64 }, { user: "Ajedrezfacu", pts: 60 }, { user: "mago_pol", pts: 54 }, { user: "grauclub", pts: 47 }, { user: "poder-ozo", pts: 38 }, { user: "Santiluison_99", pts: 34 }, { user: "FuerzasArmadas", pts: 27 },
+            { user: "Polyamor", pts: 26 }, { user: "misting", pts: 26 }, { user: "dfarchich", pts: 25 }, { user: "alex2018inf", pts: 25 }, { user: "M3TR3STRO", pts: 24 }, { user: "Nicorita14", pts: 22 }, { user: "jugador_79", pts: 22 }, { user: "ikeandas", pts: 21 },
+            { user: "Tuviejateama", pts: 20 }, { user: "AgusDF", pts: 20 }, { user: "Floqui77", pts: 20 }, { user: "Mecamdane", pts: 18 },
+            { user: "santiromero1", pts: 18 }, { user: "seacabolamentira2", pts: 17 }, { user: "memidepe", pts: 16 }, { user: "franky073", pts: 16 }, { user: "DLelouche", pts: 16 }, { user: "lemniscata18", pts: 16 }, { user: "INCOGNITOS", pts: 16 }, { user: "braiandaniel83chess", pts: 15 }, { user: "ominoso", pts: 14 }, { user: "nicootina", pts: 14 }, { user: "Gia_19", pts: 14 }, { user: "La_Faustineta", pts: 13 }, { user: "lat22", pts: 13 }, { user: "petisolancero", pts: 13 }, { user: "efarias", pts: 12 }, { user: "javi1468", pts: 12 }, { user: "svas06", pts: 12 },
+            { user: "caramto15", pts: 10 }, { user: "Mcorda", pts: 10 }, { user: "gaston1977", pts: 9 }, , { user: "santilointenta", pts: 8 },
+            { user: "brunoblanco", pts: 8 }, { user: "christianOpsi", pts: 8 }, { user: "Flexotanil", pts: 6 }, { user: "cristianhacker", pts: 6 }, { user: "cascarudopampero", pts: 6 }, { user: "Kasparaldo", pts: 6 },
+            { user: "PaTriPErO", pts: 5 }, { user: "Luchonet", pts: 4 }, { user: "ThiagoDTL", pts: 4 }, { user: "DaniLeonina00", pts: 4 }, { user: "Candecrig", pts: 2 },
+            { user: "evaristom", pts: 2 }, { user: "Annabella26", pts: 2 }, { user: "luquettibahia", pts: 0 }, { user: "oterobarbi", pts: 0 }, { user: "patovichm", pts: 0 },
+            { user: "MarioBross2004", pts: 0 }, { user: "caretofobia666", pts: 0 }, { user: "Quique2876", pts: 0 }, { user: "SBTommy", pts: 0 }, { user: "Zorresco", pts: 0 },
+            { user: "KETEMETO2", pts: 0 }, { user: "Mfjha", pts: 0 }, { user: "rodri_garcia", pts: 0 }, { user: "manucho18", pts: 0 }, { user: "dfarchich1", pts: 0 },
+            { user: "Caballodetroya2022", pts: 0 }, { user: "LEO_LaPlata", pts: 0 }, { user: "leonplaychess", pts: 0 }, { user: "lukita121212", pts: 0 }, { user: "chimillanes", pts: 0 }
         ];
 
-        const TOURNAMENT_ID = '1XaQzY29';
+        const TOURNAMENT_ID = 'KUfJPB7U';
 
         function renderGeneral() {
             const tbody = document.getElementById('tabla-general-cuerpo');
