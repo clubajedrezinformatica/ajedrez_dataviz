@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capacitación Universitaria para la Enseñanza del Ajedrez - UNLP</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        unlp-blue: '#003366',
+                        unlp-gray: '#4B5563',
+                        unlp-light: '#F3F4F6',
+                        unlp-accent: '#0055a4'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .view { animation: fadeIn 0.3s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+       
+        /* Fondo de ajedrez simulado con CSS para no depender de imágenes externas */
+        .chess-bg {
+            background-color: #003366;
+            background-image:
+                linear-gradient(45deg, #004080 25%, transparent 25%),
+                linear-gradient(-45deg, #004080 25%, transparent 25%),
+                linear-gradient(45deg, transparent 75%, #004080 75%),
+                linear-gradient(-45deg, transparent 75%, #004080 75%);
+            background-size: 40px 40px;
+            background-position: 0 0, 0 20px, 20px -20px, -20px 0px;
+            opacity: 0.1;
+        }
+    </style>
+</head>
+<body class="bg-unlp-light text-gray-800 min-h-screen flex flex-col">
+
+    <!-- Header / Navegación Principal -->
+    <header class="bg-unlp-blue text-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-4 cursor-pointer" onclick="renderDashboard()">
+                <!-- Escudo UNLP Simulado (Círculo con texto) -->
+                <div class="bg-white rounded-full shadow-sm flex items-center justify-center w-12 h-12 flex-shrink-0 border-2 border-gray-200">
+                    <span class="text-unlp-blue font-bold text-sm text-center leading-none">UNLP</span>
+                </div>
+                <div>
+                    <h1 class="text-sm md:text-base font-bold leading-tight">Capacitación Universitaria para la Enseñanza del Ajedrez</h1>
+                    <p class="text-xs text-gray-300 hidden sm:block">Universidad Nacional de La Plata</p>
+                </div>
+            </div>
+            <div class="flex items-center space-x-4">
+                <!-- Deportes UNLP Texto -->
+                <div class="flex flex-col items-end leading-none">
+                    <span class="text-xs text-gray-300">Secretaría de</span>
+                    <span class="text-sm font-bold tracking-wide">DEPORTES</span>
+                </div>
+                <button class="bg-white text-unlp-blue px-4 py-2 rounded-md font-semibold text-sm hover:bg-gray-100 transition hidden md:block">Cerrar Sesión</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Contenedor Principal (SPA) -->
+    <main id="app" class="flex-grow container mx-auto px-4 py-8 w-full max-w-6xl">
+        <!-- El contenido se inyecta aquí vía JavaScript -->
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-gray-400 text-center py-4 mt-auto">
+        <p class="text-sm">&copy; 2026 Universidad Nacional de La Plata. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        // --- DATOS DE PRUEBA (MOCK DATA) ---
+        // Datos actualizados con los profesores y materias solicitados
+        const mockData = [
+            {
+                id: 'pedagogia',
+                title: 'Pedagogía del Ajedrez',
+                professor: 'Prof. Carolina Hurtado',
+                materials: [
+                    { unit: 'Unidad 1: Fundamentos Pedagógicos', files: [{ name: 'El ajedrez como herramienta educativa.pdf', type: 'PDF' }, { name: 'Teorías de aprendizaje en el juego.pdf', type: 'PDF' }] },
+                    { unit: 'Unidad 2: Planificación Didáctica', files: [{ name: 'Diseño de Clases.pdf', type: 'Guía' }, { name: 'Evaluación en Ajedrez.docx', type: 'Guía' }] }
+                ],
+                classes: Array.from({ length: 12 }, (_, i) => ({
+                    number: i + 1,
+                    date: `2026-08-${(10 + i).toString().padStart(2, '0')}`,
+                    topic: i === 0 ? 'Introducción a la Pedagogía del Ajedrez' : `Estrategias didácticas ${i+1}`,
+                    videoId: 'dQw4w9WgXcQ'
+                }))
+            },
+            {
+                id: 'arbitraje',
+                title: 'Arbitraje y Organización de Torneos',
+                professor: 'Nicolás Nicosia',
+                materials: [
+                    { unit: 'Unidad 1: Reglamento FIDE', files: [{ name: 'Reglas de la FIDE 2026.pdf', type: 'PDF' }, { name: 'Manual del Árbitro.pdf', type: 'PDF' }] },
+                    { unit: 'Unidad 2: Organización de Eventos', files: [{ name: 'Sistemas de Emparejamientos (Suizo).pdf', type: 'PDF' }] }
+                ],
+                classes: Array.from({ length: 12 }, (_, i) => ({
+                    number: i + 1,
+                    date: `2026-08-${(11 + i).toString().padStart(2, '0')}`,
+                    topic: i === 0 ? 'Funciones del Árbitro' : `Organización de Torneos ${i+1}`,
+                    videoId: 'oHg5SJYRHA0'
+                }))
+            },
+            {
+                id: 'historia',
+                title: 'Historia del Ajedrez',
+                professor: "Adolfo D'Ascanio",
+                materials: [
+                    { unit: 'Unidad 1: Orígenes y Evolución', files: [{ name: 'El Chaturanga y Shatranj.pdf', type: 'PDF' }, { name: 'El Ajedrez Romántico del Siglo XIX.pdf', type: 'PDF' }] }
+                ],
+                classes: Array.from({ length: 12 }, (_, i) => ({
+                    number: i + 1,
+                    date: `2026-09-${(1 + i).toString().padStart(2, '0')}`,
+                    topic: i === 0 ? 'Orígenes en la India y Persia' : `Evolución histórica ${i+1}`,
+                    videoId: 'M7lc1UVf-VE'
+                }))
+            },
+            {
+                id: 'entrenamiento',
+                title: 'Entrenamiento en Ajedrez',
+                professor: 'Diego Cirulli',
+                materials: [
+                    { unit: 'Unidad 1: Metodología del Entrenamiento', files: [{ name: 'Planificación de Entrenamientos.pdf', type: 'PDF' }, { name: 'Cálculo y Visualización.pdf', type: 'PDF' }] }
+                ],
+                classes: Array.from({ length: 12 }, (_, i) => ({
+                    number: i + 1,
+                    date: `2026-10-${(5 + i).toString().padStart(2, '0')}`,
+                    topic: i === 0 ? 'Bases del Entrenamiento' : `Técnicas de estudio avanzadas ${i+1}`,
+                    videoId: 'kJQP7kiw5Fk'
+                }))
+            }
+        ];
+
+        let currentSubject = null;
+        let currentTab = 'materiales';
+
+        const app = document.getElementById('app');
+
+        // --- RENDERIZADO DE VISTAS ---
+
+        function renderDashboard() {
+            currentSubject = null;
+            app.innerHTML = `
+                <div class="view">
+                    <!-- Banner Hero con Fondo Ajedrez CSS -->
+                    <div class="relative rounded-xl overflow-hidden shadow-lg mb-8 h-48 md:h-64 bg-unlp-blue">
+                        <div class="absolute inset-0 chess-bg"></div>
+                        <div class="absolute inset-0 bg-gradient-to-r from-unlp-blue/90 to-transparent flex flex-col justify-center p-8">
+                            <h2 class="text-2xl md:text-4xl font-bold text-white mb-2 relative z-10">Capacitación Universitaria para la Enseñanza del Ajedrez</h2>
+                            <p class="text-blue-100 max-w-lg relative z-10">Plataforma de Aula Virtual - Accedé a los materiales de estudio, clases grabadas y recursos de la cursada.</p>
+                        </div>
+                    </div>
+
+                    <div class="mb-6">
+                        <h3 class="text-xl md:text-2xl font-bold text-unlp-blue">Mis Materias</h3>
+                    </div>
+                   
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        ${mockData.map(subject => `
+                            <div class="bg-white rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden border border-gray-100 flex flex-col relative">
+                                <!-- Watermark (Icono Dama SVG) -->
+                                <div class="absolute top-2 right-2 w-16 h-16 opacity-10 pointer-events-none text-unlp-blue">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M12 2c-1.1 0-2 .9-2 2 0 .5.2 1 .5 1.3L9 6l-2 2 1 1-2 2 1 1-2 2v2h18v-2l-2-2 1-1-2-2 1-1-2-2-1.5-.7c.3-.3.5-.8.5-1.3 0-1.1-.9-2-2-2zm-4 18h8v2H8v-2z"/>
+                                    </svg>
+                                </div>
+                               
+                                <div class="bg-unlp-blue h-2 w-full"></div>
+                                <div class="p-5 flex-grow flex flex-col relative z-10">
+                                    <h4 class="font-bold text-lg text-gray-800 mb-2">${subject.title}</h4>
+                                    <p class="text-sm text-gray-500 mb-4">${subject.professor}</p>
+                                    <div class="mt-auto">
+                                        <button onclick="renderSubject('${subject.id}')" class="w-full bg-unlp-blue text-white py-2 px-4 rounded-md font-semibold text-sm hover:bg-blue-800 transition flex items-center justify-center group">
+                                            Ingresar al aula
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2 group-hover:translate-x-1 transition" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+            window.scrollTo(0, 0);
+        }
+
+        function renderSubject(subjectId) {
+            currentSubject = mockData.find(s => s.id === subjectId);
+            currentTab = 'materiales';
+            updateSubjectView();
+        }
+
+        function updateSubjectView() {
+            if (!currentSubject) return;
+
+            app.innerHTML = `
+                <div class="view">
+                    <!-- Breadcrumb -->
+                    <div class="mb-6">
+                        <button onclick="renderDashboard()" class="text-sm text-gray-500 hover:text-unlp-blue transition flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                            </svg>
+                            Volver a Mis Materias
+                        </button>
+                    </div>
+
+                    <!-- Header Materia -->
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 mb-6 flex flex-col md:flex-row md:items-center md:justify-between">
+                        <div>
+                            <h2 class="text-2xl md:text-3xl font-bold text-unlp-blue">${currentSubject.title}</h2>
+                            <p class="text-gray-600 mt-1">${currentSubject.professor}</p>
+                        </div>
+                        <!-- Icono Dama SVG -->
+                        <div class="hidden md:block w-12 h-12 text-unlp-blue mt-4 md:mt-0">
+                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2c-1.1 0-2 .9-2 2 0 .5.2 1 .5 1.3L9 6l-2 2 1 1-2 2 1 1-2 2v2h18v-2l-2-2 1-1-2-2 1-1-2-2-1.5-.7c.3-.3.5-.8.5-1.3 0-1.1-.9-2-2-2zm-4 18h8v2H8v-2z"/>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <!-- Tabs -->
+                    <div class="border-b border-gray-200 mb-6">
+                        <nav class="-mb-px flex space-x-8" aria-label="Tabs">
+                            <button onclick="switchTab('materiales')" class="${currentTab === 'materiales' ? 'border-unlp-blue text-unlp-blue' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'} whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm transition">
+                                Materiales de Estudio
+                            </button>
+                            <button onclick="switchTab('clases')" class="${currentTab === 'clases' ? 'border-unlp-blue text-unlp-blue' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'} whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm transition">
+                                Clases Grabadas
+                            </button>
+                        </nav>
+                    </div>
+
+                    <!-- Contenido Tab -->
+                    <div id="tab-content" class="mb-12">
+                        ${currentTab === 'materiales' ? renderMaterialsTab() : renderClassesTab()}
+                    </div>
+                </div>
+            `;
+            window.scrollTo(0, 0);
+        }
+
+        function switchTab(tabName) {
+            currentTab = tabName;
+            updateSubjectView();
+        }
+
+        function renderMaterialsTab() {
+            return `
+                <div class="space-y-6">
+                    ${currentSubject.materials.map(unit => `
+                        <div class="bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden">
+                            <div class="bg-gray-50 px-6 py-4 border-b border-gray-100">
+                                <h3 class="font-semibold text-unlp-blue">${unit.unit}</h3>
+                            </div>
+                            <ul class="divide-y divide-gray-100">
+                                ${unit.files.map(file => `
+                                    <li class="px-6 py-4 flex items-center justify-between hover:bg-gray-50 transition">
+                                        <div class="flex items-center">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-400 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                                            </svg>
+                                            <span class="text-sm font-medium text-gray-700">${file.name}</span>
+                                        </div>
+                                        <div class="flex space-x-2">
+                                            <button class="text-unlp-blue hover:text-blue-800 text-sm font-medium px-3 py-1 rounded transition">Ver</button>
+                                            <button class="text-gray-500 hover:text-gray-700 text-sm font-medium px-3 py-1 rounded transition">Descargar</button>
+                                        </div>
+                                    </li>
+                                `).join('')}
+                            </ul>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+        }
+
+        function renderClassesTab() {
+            return `
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    ${currentSubject.classes.map(cls => `
+                        <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden flex flex-col sm:flex-row">
+                            <!-- Contenedor Video -->
+                            <div class="w-full sm:w-1/2 bg-black aspect-video sm:aspect-auto">
+                                <iframe
+                                    class="w-full h-full"
+                                    src="https://www.youtube.com/embed/${cls.videoId}"
+                                    title="Clase ${cls.number}"
+                                    frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowfullscreen>
+                                </iframe>
+                            </div>
+                            <!-- Info Clase -->
+                            <div class="p-5 flex flex-col justify-between flex-grow">
+                                <div>
+                                    <span class="inline-block bg-blue-100 text-unlp-blue text-xs font-semibold px-2 py-1 rounded mb-2">
+                                        Clase ${cls.number}
+                                    </span>
+                                    <h4 class="font-bold text-gray-800">${cls.topic}</h4>
+                                </div>
+                                <div class="mt-4 flex items-center text-sm text-gray-500">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                    </svg>
+                                    ${cls.date}
+                                </div>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+        }
+
+        // Inicializar app
+        renderDashboard();
+    </script>
+</body>
+</html>

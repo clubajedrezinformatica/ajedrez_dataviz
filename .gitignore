@@ -1,0 +1,14 @@
+# Python
+__pychache__/
+*.py[cod]
+*$py.class
+venv/
+.venv/
+.env 
+
+# Windows
+Thumbs.db
+desktop.ini
+
+# VS Code
+.vscode/
