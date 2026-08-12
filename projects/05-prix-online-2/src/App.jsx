@@ -68,7 +68,7 @@ const Header = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      setIsScrolled(window.scrollY > 80);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
@@ -100,7 +100,7 @@ const Header = () => {
         
         {/* Contenedor del título con transición */}
         <div 
-          className={`overflow-hidden transition-all duration-300 ease-in-out ${
+          className={`overflow-hidden transition-all duration-700 ease-in-out ${
             isScrolled 
               ? 'max-h-0 opacity-0 mt-0 pt-0 border-transparent' 
               : 'max-h-20 opacity-100 mt-4 pt-4 border-t border-gray-100'
