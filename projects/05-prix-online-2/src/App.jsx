@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Trophy,
   Calendar as CalendarIcon,
@@ -51,19 +51,29 @@ const initialPlayers = [
 ];
 
 const tournamentDates = [
-  { date: 1, day: '09 de Agosto', status: 'past' },
-  { date: 2, day: '16 de Agosto', status: 'upcoming' },
-  { date: 3, day: '23 de Agosto', status: 'upcoming' },
-  { date: 4, day: '30 de Agosto', status: 'upcoming' },
-  { date: 5, day: '06 de Septiembre', status: 'upcoming' },
-  { date: 6, day: '13 de Septiembre', status: 'upcoming' },
-  { date: 7, day: '20 de Septiembre', status: 'upcoming' },
-  { date: 8, day: '27 de Septiembre', status: 'upcoming' },
+  { date: 1, day: '09 de Agosto', status: 'past', link: 'https://lichess.org/tournament/mhvD5tb9' },
+  { date: 2, day: '16 de Agosto', status: 'upcoming', link: 'https://lichess.org/tournament/kbRT8zFq' },
+  { date: 3, day: '23 de Agosto', status: 'upcoming', link: 'https://lichess.org/tournament/IfsCbYsv' },
+  { date: 4, day: '30 de Agosto', status: 'upcoming', link: 'https://lichess.org/tournament/C4Jue0rf' },
+  { date: 5, day: '06 de Septiembre', status: 'upcoming', link: 'https://lichess.org/tournament/83kg4qfx' },
+  { date: 6, day: '13 de Septiembre', status: 'upcoming', link: 'https://lichess.org/tournament/M06fBQuL' },
+  { date: 7, day: '20 de Septiembre', status: 'upcoming', link: 'https://lichess.org/tournament/6VvD7Aqe' },
+  { date: 8, day: '27 de Septiembre', status: 'upcoming', link: 'https://lichess.org/tournament/EPN0fCN8' },
 ];
 
 // --- COMPONENTES ---
 
 const Header = () => {
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   const logos = [
     { src: logoDeportes, alt: 'Deportes UNLP' },
     { src: logoInformatica, alt: 'Facultad de Informática' },
@@ -74,8 +84,8 @@ const Header = () => {
 
   return (
     <header className="bg-white shadow-sm sticky top-0 z-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-        <div className="flex flex-wrap justify-between items-center gap-4 mb-4">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+        <div className="flex flex-wrap justify-between items-center gap-4">
           <div className="flex flex-wrap items-center gap-6">
             {logos.map((logo, i) => (
               <img 
@@ -87,7 +97,15 @@ const Header = () => {
             ))}
           </div>
         </div>
-        <div className="border-t border-gray-100 pt-4">
+        
+        {/* Contenedor del título con transición */}
+        <div 
+          className={`overflow-hidden transition-all duration-300 ease-in-out ${
+            isScrolled 
+              ? 'max-h-0 opacity-0 mt-0 pt-0 border-transparent' 
+              : 'max-h-20 opacity-100 mt-4 pt-4 border-t border-gray-100'
+          }`}
+        >
           <h1 className="text-2xl sm:text-3xl font-extrabold text-blue-900 tracking-tight">
             Prix Online UNLP <span className="text-blue-600">2026</span>
           </h1>
@@ -311,11 +329,13 @@ const Calendar = ({ dates }) => (
                 <h4 className={`text-lg font-bold ${isPast ? 'text-gray-600' : 'text-gray-800'}`}>
                   {d.day}
                 </h4>
-                <p className="text-sm text-gray-400 mt-1">20:15hs (Arena)</p>
+                <p className="text-sm text-gray-400 mt-1">20:15hs (Arena 80')</p>
               </div>
              
               <a
-                href="#"
+                href={d.link || '#'}
+                target={d.link ? "_blank" : "_self"}
+                rel={d.link ? "noopener noreferrer" : ""}
                 className={`mt-6 block w-full text-center py-2 rounded-md text-sm font-semibold transition-colors ${
                   isPast
                     ? 'bg-gray-300 text-gray-500 cursor-not-allowed pointer-events-none'
