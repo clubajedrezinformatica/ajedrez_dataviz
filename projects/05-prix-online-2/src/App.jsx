@@ -52,7 +52,7 @@ const initialPlayers = [
 
 const tournamentDates = [
   { date: 1, day: '09 de Agosto', status: 'past', link: 'https://lichess.org/tournament/mhvD5tb9' },
-  { date: 2, day: '16 de Agosto', status: 'upcoming', link: 'https://lichess.org/tournament/kbRT8zFq' },
+  { date: 2, day: '16 de Agosto', status: 'upcoming', time: '21:45', link: 'https://lichess.org/tournament/kbRT8zFq' },
   { date: 3, day: '23 de Agosto', status: 'upcoming', link: 'https://lichess.org/tournament/IfsCbYsv' },
   { date: 4, day: '30 de Agosto', status: 'upcoming', link: 'https://lichess.org/tournament/C4Jue0rf' },
   { date: 5, day: '06 de Septiembre', status: 'upcoming', link: 'https://lichess.org/tournament/83kg4qfx' },
@@ -329,7 +329,7 @@ const Calendar = ({ dates }) => (
                 <h4 className={`text-lg font-bold ${isPast ? 'text-gray-600' : 'text-gray-800'}`}>
                   {d.day}
                 </h4>
-                <p className="text-sm text-gray-400 mt-1">20:15hs (Arena 80')</p>
+                <p className="text-sm text-gray-400 mt-1">{d.time || '20:15'}hs (Arena 80')</p>
               </div>
              
               <a
