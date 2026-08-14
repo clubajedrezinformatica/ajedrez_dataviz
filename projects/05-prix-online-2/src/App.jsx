@@ -52,7 +52,7 @@ const initialPlayers = [
 
 const tournamentDates = [
   { date: 1, day: '09 de Agosto', status: 'past', link: 'https://lichess.org/tournament/mhvD5tb9' },
-  { date: 2, day: '16 de Agosto', status: 'upcoming', time: '21:45', link: 'https://lichess.org/tournament/kbRT8zFq' },
+  { date: 2, day: '16 de Agosto', status: 'upcoming', time: '21:45', link: 'https://lichess.org/tournament/hWKuR4H5' },
   { date: 3, day: '23 de Agosto', status: 'upcoming', link: 'https://lichess.org/tournament/IfsCbYsv' },
   { date: 4, day: '30 de Agosto', status: 'upcoming', link: 'https://lichess.org/tournament/C4Jue0rf' },
   { date: 5, day: '06 de Septiembre', status: 'upcoming', link: 'https://lichess.org/tournament/83kg4qfx' },
