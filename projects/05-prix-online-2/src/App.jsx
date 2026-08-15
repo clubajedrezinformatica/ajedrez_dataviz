@@ -162,7 +162,7 @@ const HeroSection = ({ dates }) => {
                 rel={nextTournament.link ? "noopener noreferrer" : ""}
                 className="w-full flex justify-center items-center gap-2 bg-blue-800 hover:bg-blue-900 text-white font-bold py-3 px-6 rounded-lg transition-colors"
               >
-                <Gamepad2 className="w-5 h-5" />
+                <Swords className="w-5 h-5" />
                 Unirse a la Arena
               </a>
             </div>
