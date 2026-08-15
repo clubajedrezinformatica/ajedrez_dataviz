@@ -115,29 +115,63 @@ const Header = () => {
   );
 };
 
-const HeroSection = () => (
-  <section 
-    className="relative text-white bg-cover bg-center bg-no-repeat"
-    style={{ 
-      backgroundImage: `linear-gradient(rgba(30, 58, 138, 0.85), rgba(15, 23, 42, 0.95)), url(${fondoAjedrez})` 
-    }}
-  >
-    <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 text-center">
-      <h2 className="text-4xl sm:text-5xl font-extrabold tracking-tight mb-4 shadow-sm">
-        Prix Online UNLP 2026
-      </h2>
-      <p className="text-lg sm:text-xl text-blue-100 font-medium mb-6 drop-shadow-md">
-        8 Fechas | Formato Arena 3+2 | Domingos de Agosto y Septiembre
-      </p>
-      <div className="max-w-2xl mx-auto bg-blue-900/60 backdrop-blur-sm border border-blue-700/50 rounded-lg p-6 flex items-center justify-center gap-4 shadow-xl">
-        <Crown className="w-8 h-8 text-yellow-400 flex-shrink-0 drop-shadow" />
-        <p className="text-base sm:text-lg text-gray-100">
-          Los <span className="font-bold text-white">8 mejores jugadores</span> de la tabla general clasifican a <span className="font-bold text-white">la gran final por matches</span> a jugarse en octubre.
+const HeroSection = ({ dates }) => {
+  // Busca el próximo torneo activo
+  const nextTournament = dates?.find(t => t.status === 'upcoming');
+
+  return (
+    <section 
+      className="relative text-white bg-cover bg-center bg-no-repeat"
+      style={{ 
+        backgroundImage: `linear-gradient(rgba(30, 58, 138, 0.85), rgba(15, 23, 42, 0.95)), url(${fondoAjedrez})` 
+      }}
+    >
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20 text-center">
+        <h2 className="text-4xl sm:text-5xl font-extrabold tracking-tight mb-4 shadow-sm">
+          Prix Online UNLP 2026
+        </h2>
+        <p className="text-lg sm:text-xl text-blue-100 font-medium mb-8 drop-shadow-md">
+          8 Fechas | Formato Arena 3+2 | Domingos de Agosto y Septiembre
         </p>
+        
+        <div className="max-w-2xl mx-auto bg-blue-900/60 backdrop-blur-sm border border-blue-700/50 rounded-lg p-6 flex items-center justify-center gap-4 shadow-xl mb-10">
+          <Crown className="w-8 h-8 text-yellow-400 flex-shrink-0 drop-shadow" />
+          <p className="text-base sm:text-lg text-gray-100">
+            Los <span className="font-bold text-white">8 mejores jugadores</span> de la tabla general clasifican a la gran final presencial/online por matches.
+          </p>
+        </div>
+
+        {/* Tarjeta Destacada del Próximo Torneo */}
+        {nextTournament && (
+          <div className="max-w-md mx-auto bg-white rounded-xl shadow-2xl overflow-hidden border-2 border-blue-400 transform transition-transform hover:scale-105">
+            <div className="bg-blue-600 px-4 py-2 flex items-center justify-center gap-2">
+              <span className="relative flex h-3 w-3">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
+              </span>
+              <span className="text-white font-bold text-sm uppercase tracking-wider">Próxima Fecha</span>
+            </div>
+            <div className="p-6 text-gray-900 text-center">
+              <h3 className="text-2xl font-black mb-1">Fecha {nextTournament.date}</h3>
+              <p className="text-lg font-medium text-gray-600 mb-6">
+                Domingo {nextTournament.day} - {nextTournament.time || '20:15'} hs
+              </p>
+              <a 
+                href={nextTournament.link || '#'} 
+                target={nextTournament.link ? "_blank" : "_self"}
+                rel={nextTournament.link ? "noopener noreferrer" : ""}
+                className="w-full flex justify-center items-center gap-2 bg-blue-800 hover:bg-blue-900 text-white font-bold py-3 px-6 rounded-lg transition-colors"
+              >
+                <Gamepad2 className="w-5 h-5" />
+                Unirse a la Arena
+              </a>
+            </div>
+          </div>
+        )}
       </div>
-    </div>
-  </section>
-);
+    </section>
+  );
+};
 
 const StandingsTable = ({ players }) => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -407,7 +441,7 @@ export default function App() {
     <div className="min-h-screen bg-gray-50 font-sans text-gray-800 antialiased">
       <Header />
       <main>
-        <HeroSection />
+        <HeroSection dates={tournamentDates} />
         <StandingsTable players={players} />
         <GameOfTheWeek />
         <Calendar dates={tournamentDates} />
