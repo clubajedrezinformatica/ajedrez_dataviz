@@ -137,7 +137,7 @@ const HeroSection = ({ dates }) => {
         <div className="max-w-2xl mx-auto bg-blue-900/60 backdrop-blur-sm border border-blue-700/50 rounded-lg p-6 flex items-center justify-center gap-4 shadow-xl mb-10">
           <Crown className="w-8 h-8 text-yellow-400 flex-shrink-0 drop-shadow" />
           <p className="text-base sm:text-lg text-gray-100">
-            Los <span className="font-bold text-white">8 mejores jugadores</span> de la tabla general clasifican a la gran final presencial/online por matches.
+            Los <span className="font-bold text-white">8 mejores jugadores</span> de la tabla general clasifican <span className="font-bold text-white">gran final por matches</span> a disputarse en octubre.
           </p>
         </div>
 
