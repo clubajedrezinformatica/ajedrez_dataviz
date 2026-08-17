@@ -52,12 +52,12 @@ const initialPlayers = [
 
 const tournamentDates = [
   { date: 1, day: '09 de Agosto', status: 'past', link: 'https://lichess.org/tournament/mhvD5tb9' },
-  { date: 2, day: '17 de Agosto', status: 'upcoming', time: '20:30', link: 'https://lichess.org/tournament/MxBsPRVH' },
+  { date: 2, day: '17 de Agosto', status: 'upcoming', dayOfWeek: 'Lunes', time: '20:30', link: 'https://lichess.org/tournament/MxBsPRVH' },
   { date: 3, day: '23 de Agosto', status: 'upcoming', link: 'https://lichess.org/tournament/IfsCbYsv' },
   { date: 4, day: '30 de Agosto', status: 'upcoming', link: 'https://lichess.org/tournament/C4Jue0rf' },
   { date: 5, day: '06 de Septiembre', status: 'upcoming', link: 'https://lichess.org/tournament/83kg4qfx' },
   { date: 6, day: '13 de Septiembre', status: 'upcoming', link: 'https://lichess.org/tournament/M06fBQuL' },
-  { date: 7, day: '20 de Septiembre', status: 'upcoming', link: 'https://lichess.org/tournament/6VvD7Aqe' },
+  { date: 7, day: '19 de Septiembre', status: 'upcoming', dayOfWeek: 'Sábado', time: '20:30', link: 'https://lichess.org/tournament/qaIVXjoY' },
   { date: 8, day: '27 de Septiembre', status: 'upcoming', link: 'https://lichess.org/tournament/EPN0fCN8' },
 ];
 
@@ -154,7 +154,7 @@ const HeroSection = ({ dates }) => {
             <div className="p-6 text-gray-900 text-center">
               <h3 className="text-2xl font-black mb-1">Fecha {nextTournament.date}</h3>
               <p className="text-lg font-medium text-gray-600 mb-6">
-                Domingo {nextTournament.day} - {nextTournament.time || '20:15'} hs
+                {nextTournament.dayOfWeek || 'Domingo'} {nextTournament.day} - {nextTournament.time || '20:15'}hs
               </p>
               <a 
                 href={nextTournament.link || '#'} 
