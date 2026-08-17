@@ -163,7 +163,7 @@ const HeroSection = ({ dates }) => {
                 className="w-full flex justify-center items-center gap-2 bg-blue-800 hover:bg-blue-900 text-white font-bold py-3 px-6 rounded-lg transition-colors"
               >
                 <Swords className="w-5 h-5" />
-                Unirse a la Arena
+                Unirse al Torneo
               </a>
             </div>
           </div>
@@ -209,7 +209,7 @@ const StandingsTable = ({ players }) => {
                   const realIndex = indexOfFirstPlayer + index;
                   const isQualified = realIndex < 8;
                   return (
-                    <tr key={player.id} className={`${isQualified ? 'bg-green-150' : 'bg-white'} hover:bg-gray-50 transition-colors`}>
+                    <tr key={player.id} className={`${isQualified ? 'bg-green-200' : 'bg-white'} hover:bg-gray-50 transition-colors`}>
                       <td className="px-4 py-4 whitespace-nowrap text-sm font-bold text-gray-900">
                         {realIndex + 1}
                       </td>
