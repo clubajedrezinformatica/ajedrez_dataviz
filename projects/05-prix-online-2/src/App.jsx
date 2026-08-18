@@ -221,10 +221,10 @@ const StandingsTable = ({ players }) => {
                       <td className="px-4 py-4 whitespace-nowrap text-sm font-bold text-gray-900">
                         {realIndex + 1}
                       </td>
-                      <td className="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-800">
+                      <td className="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-800 font-bold">
                         {player.nick}
                       </td>
-                      <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900 font-bold">
+                      <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900">
                         {player.points}
                       </td>
                       <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-600 hidden sm:table-cell">
@@ -335,7 +335,7 @@ const GameOfTheWeek = () => (
         </div>
         
         <div className="mt-6 text-center">
-          <p className="text-lg font-semibold text-gray-800">alekinee vs. AjedrezFacu</p>
+          <p className="text-lg font-semibold text-gray-800">alekinee vs. Ajedrezfacu</p>
           <p className="text-gray-500 text-sm">Defensa Moderna</p>
         </div>
       </div>
