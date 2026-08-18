@@ -335,8 +335,8 @@ const GameOfTheWeek = () => (
         </div>
         
         <div className="mt-6 text-center">
-          <p className="text-lg font-semibold text-gray-800">agustinbunes vs. MiyuKoto</p>
-          <p className="text-gray-500 text-sm">Defensa Caro-Kann - Variante del avance</p>
+          <p className="text-lg font-semibold text-gray-800">alekinee vs. AjedrezFacu</p>
+          <p className="text-gray-500 text-sm">Defensa Moderna</p>
         </div>
       </div>
     </div>
