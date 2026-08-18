@@ -35,10 +35,10 @@ const initialPlayers = [
   { id: 11, nick: 'lukita121212', points: 20, tournaments: 2 },
   { id: 12, nick: 'agustinbunes', points: 19, tournaments: 1 },
   { id: 13, nick: 'LORDSLYTHERIN', points: 17, tournaments: 1 },
-  { id: 14, nick: 'alex2018inf', points: 14, tournaments: 2 },
-  { id: 15, nick: 'nicootinaa', points: 13, tournaments: 1 },
-  { id: 16, nick: 'alekinee', points: 16, tournaments: 1 },
-  { id: 17, nick: 'FernandoPoratto', points: 16, tournaments: 2 },
+  { id: 14, nick: 'alekinee', points: 16, tournaments: 1 },
+  { id: 15, nick: 'FernandoPoratto', points: 16, tournaments: 2 },
+  { id: 16, nick: 'alex2018inf', points: 14, tournaments: 2 },
+  { id: 17, nick: 'nicootinaa', points: 13, tournaments: 1 },
   { id: 18, nick: 'VivaCFK', points: 10, tournaments: 1 },
   { id: 19, nick: 'FranCatalano', points: 9, tournaments: 1 },
   { id: 20, nick: 'ikeandas', points: 9, tournaments: 2 },
@@ -224,7 +224,7 @@ const StandingsTable = ({ players }) => {
                       <td className="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-800">
                         {player.nick}
                       </td>
-                      <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-600">
+                      <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900 font-bold">
                         {player.points}
                       </td>
                       <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-600 hidden sm:table-cell">
