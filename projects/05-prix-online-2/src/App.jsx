@@ -22,46 +22,52 @@ import logoInformatica from './assets/logo_fi.jpg';
 import fondoAjedrez from './assets/ajedrez-fondo-2.jpg'
 
 const initialPlayers = [
-  { id: 1, nick: 'MiyuKoto', points: 45, tournaments: 2 },
-  { id: 2, nick: 'Ajedrezfacu', points: 39, tournaments: 2 },
-  { id: 3, nick: 'grauclub', points: 29, tournaments: 2 },
-  { id: 4, nick: 'Valeny', points: 26, tournaments: 2 },
-  { id: 5, nick: 'buenamor1972', points: 24, tournaments: 1 },
-  { id: 6, nick: 'Hauffmann', points: 24, tournaments: 1 },
-  { id: 7, nick: 'Ezetive3890', points: 24, tournaments: 2 },
-  { id: 8, nick: 'Tomimartinez95', points: 21, tournaments: 1 },
-  { id: 9, nick: 'naty_la_25', points: 20, tournaments: 1 },
-  { id: 10, nick: 'Belsebusky', points: 20, tournaments: 1 },
-  { id: 11, nick: 'lukita121212', points: 20, tournaments: 2 },
-  { id: 12, nick: 'agustinbunes', points: 19, tournaments: 1 },
-  { id: 13, nick: 'LORDSLYTHERIN', points: 17, tournaments: 1 },
-  { id: 14, nick: 'alekinee', points: 16, tournaments: 1 },
-  { id: 15, nick: 'FernandoPoratto', points: 16, tournaments: 2 },
-  { id: 16, nick: 'alex2018inf', points: 14, tournaments: 2 },
-  { id: 17, nick: 'nicootinaa', points: 13, tournaments: 1 },
-  { id: 18, nick: 'VivaCFK', points: 10, tournaments: 1 },
-  { id: 19, nick: 'FranCatalano', points: 9, tournaments: 1 },
-  { id: 20, nick: 'ikeandas', points: 9, tournaments: 2 },
-  { id: 21, nick: 'MTJRFAN2', points: 9, tournaments: 2 },
-  { id: 22, nick: 'dfarchich', points: 8, tournaments: 1 },
-  { id: 23, nick: 'hengui', points: 6, tournaments: 1 },
-  { id: 24, nick: 'ninjago27', points: 6, tournaments: 1 },
-  { id: 25, nick: 'onairam1', points: 5, tournaments: 1 },
-  { id: 26, nick: 'Volvedor', points: 4, tournaments: 1 },
-  { id: 27, nick: 'poder-ozo', points: 4, tournaments: 2 },
-  { id: 28, nick: 'Estudio91', points: 3, tournaments: 1 },
-  { id: 29, nick: 'C5h6n2o2', points: 2, tournaments: 1 },
-  { id: 30, nick: 'manucho18', points: 2, tournaments: 1 },
-  { id: 31, nick: 'evaristom', points: 0, tournaments: 1 },
-  { id: 32, nick: 'FuerzasArmadas', points: 0, tournaments: 1 },
-  { id: 33, nick: 'Lucio1993', points: 0, tournaments: 1 },
-  { id: 34, nick: 'chimillanes', points: 0, tournaments: 1 },
+  { id: 1, nick: 'Ajedrezfacu', points: 63, tournaments: 3 },
+  { id: 2, nick: 'Hauffmann', points: 55, tournaments: 2 },
+  { id: 3, nick: 'MiyuKoto', points: 45, tournaments: 2 },
+  { id: 4, nick: 'naty_la_25', points: 44, tournaments: 1 },
+  { id: 5, nick: 'Tomimartinez95', points: 40, tournaments: 2 },
+  { id: 6, nick: 'ninjago27', points: 39, tournaments: 2 },
+  { id: 7, nick: 'Valeny', points: 34, tournaments: 3 },
+  { id: 8, nick: 'MTJRFAN2', points: 31, tournaments: 3 },
+  { id: 9, nick: 'grauclub', points: 29, tournaments: 2 },
+  { id: 10, nick: 'lukita121212', points: 28, tournaments: 3 },
+  { id: 11, nick: 'buenamor1972', points: 24, tournaments: 1 },
+  { id: 12, nick: 'Ezetive3890', points: 24, tournaments: 2 },
+  { id: 13, nick: 'Mcorda', points: 22, tournaments: 1 },
+  { id: 14, nick: 'Belsebusky', points: 20, tournaments: 1 },
+  { id: 15, nick: 'agustinbunes', points: 19, tournaments: 1 },
+  { id: 16, nick: 'LORDSLYTHERIN', points: 17, tournaments: 1 },
+  { id: 17, nick: 'alekinee', points: 16, tournaments: 1 },
+  { id: 18, nick: 'FernandoPoratto', points: 16, tournaments: 2 },
+  { id: 19, nick: 'alex2018inf', points: 14, tournaments: 3 },
+  { id: 20, nick: 'nicootinaa', points: 13, tournaments: 1 },
+  { id: 21, nick: 'FranCatalano', points: 11, tournaments: 2 },
+  { id: 22, nick: 'VivaCFK', points: 10, tournaments: 1 },
+  { id: 23, nick: 'ikeandas', points: 9, tournaments: 2 },
+  { id: 24, nick: 'dfarchich', points: 13, tournaments: 2 },
+  { id: 25, nick: 'Pabameky', points: 11, tournaments: 1 },
+  { id: 26, nick: 'poder-ozo', points: 11, tournaments: 3 },
+  { id: 27, nick: 'VozesTalentinho', points: 10, tournaments: 1 },
+  { id: 28, nick: 'pulquijuan', points: 8, tournaments: 1 },
+  { id: 29, nick: 'hengui', points: 6, tournaments: 1 },
+  { id: 30, nick: 'onairam1', points: 5, tournaments: 1 },
+  { id: 31, nick: 'Mones6', points: 4, tournaments: 1 },
+  { id: 32, nick: 'Volvedor', points: 4, tournaments: 1 },
+  { id: 33, nick: 'Estudio91', points: 3, tournaments: 1 },
+  { id: 34, nick: 'alocopernico', points: 2, tournaments: 1 },
+  { id: 35, nick: 'C5h6n2o2', points: 2, tournaments: 1 },
+  { id: 36, nick: 'manucho18', points: 2, tournaments: 1 },
+  { id: 37, nick: 'evaristom', points: 0, tournaments: 1 },
+  { id: 38, nick: 'FuerzasArmadas', points: 0, tournaments: 1 },
+  { id: 39, nick: 'Lucio1993', points: 0, tournaments: 1 },
+  { id: 40, nick: 'chimillanes', points: 0, tournaments: 2 },
 ];
 
 const tournamentDates = [
   { date: 1, day: '09 de Agosto', status: 'past', link: 'https://lichess.org/tournament/mhvD5tb9' },
   { date: 2, day: '17 de Agosto', status: 'past', dayOfWeek: 'Lunes', time: '20:30', link: 'https://lichess.org/tournament/MxBsPRVH' },
-  { date: 3, day: '23 de Agosto', status: 'upcoming', link: 'https://lichess.org/tournament/IfsCbYsv' },
+  { date: 3, day: '23 de Agosto', status: 'past', link: 'https://lichess.org/tournament/IfsCbYsv' },
   { date: 4, day: '30 de Agosto', status: 'upcoming', link: 'https://lichess.org/tournament/C4Jue0rf' },
   { date: 5, day: '06 de Septiembre', status: 'upcoming', link: 'https://lichess.org/tournament/83kg4qfx' },
   { date: 6, day: '13 de Septiembre', status: 'upcoming', link: 'https://lichess.org/tournament/M06fBQuL' },
@@ -326,7 +332,7 @@ const GameOfTheWeek = () => (
         {/* Iframe interactivo de Lichess */}
         <div className="w-full max-w-2xl mx-auto rounded-lg overflow-hidden shadow-md bg-white">
           <iframe 
-            src="https://lichess.org/embed/VttAxW7z?theme=auto&bg=auto"
+            src="https://lichess.org/embed/9Mfzr2hN?theme=auto&bg=auto"
             width="100%" 
             height="600" 
             frameBorder="0"
@@ -335,8 +341,8 @@ const GameOfTheWeek = () => (
         </div>
         
         <div className="mt-6 text-center">
-          <p className="text-lg font-semibold text-gray-800">alekinee vs. Ajedrezfacu</p>
-          <p className="text-gray-500 text-sm">Defensa Moderna</p>
+          <p className="text-lg font-semibold text-gray-800">Tomimartinez95 vs. ninjago27</p>
+          <p className="text-gray-500 text-sm">Defensa Caro-Kann - Variante del avance</p>
         </div>
       </div>
     </div>
