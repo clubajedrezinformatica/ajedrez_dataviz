@@ -22,50 +22,52 @@ import logoInformatica from './assets/logo_fi.jpg';
 import fondoAjedrez from './assets/ajedrez-fondo-2.jpg'
 
 const initialPlayers = [
-  { id: 1, nick: 'Ajedrezfacu', points: 105, tournaments: 4 },
-  { id: 2, nick: 'ninjago27', points: 70, tournaments: 3 },
-  { id: 3, nick: 'Tomimartinez95', points: 66, tournaments: 3 },
-  { id: 4, nick: 'Hauffmann', points: 55, tournaments: 2 },
-  { id: 5, nick: 'MiyuKoto', points: 55, tournaments: 3 },
-  { id: 6, nick: 'naty_la_25', points: 49, tournaments: 3 },
-  { id: 7, nick: 'grauclub', points: 41, tournaments: 3 },
-  { id: 8, nick: 'Valeny', points: 40, tournaments: 4 },
-  { id: 9, nick: 'MTJRFAN2', points: 39, tournaments: 4 },
-  { id: 10, nick: 'lukita121212', points: 28, tournaments: 3 },
-  { id: 11, nick: 'Nicorita14', points: 27, tournaments: 1 },
-  { id: 12, nick: 'Mcorda', points: 26, tournaments: 2 },
-  { id: 13, nick: 'FernandoPoratto', points: 26, tournaments: 3 },
-  { id: 14, nick: 'VozesTalentinho', points: 25, tournaments: 2 },
-  { id: 15, nick: 'ikeandas', points: 25, tournaments: 3 },
-  { id: 16, nick: 'dfarchich', points: 25, tournaments: 3 },
-  { id: 17, nick: 'buenamor1972', points: 24, tournaments: 1 },
-  { id: 18, nick: 'Ezetive3890', points: 24, tournaments: 2 },
-  { id: 19, nick: 'Pabameky', points: 23, tournaments: 2 },
-  { id: 20, nick: 'Volvedor', points: 23, tournaments: 2 },
-  { id: 21, nick: 'Belsebusky', points: 20, tournaments: 1 },
-  { id: 22, nick: 'agustinbunes', points: 19, tournaments: 1 },
-  { id: 23, nick: 'LORDSLYTHERIN', points: 17, tournaments: 1 },
-  { id: 24, nick: 'alekinee', points: 16, tournaments: 1 },
-  { id: 25, nick: 'nicootinaa', points: 15, tournaments: 2 },
-  { id: 26, nick: 'alex2018inf', points: 14, tournaments: 3 },
-  { id: 27, nick: 'poder-ozo', points: 14, tournaments: 4 },
+  { id: 1, nick: 'Ajedrezfacu', points: 131, tournaments: 4 },
+  { id: 2, nick: 'ninjago27', points: 84, tournaments: 3 },
+  { id: 3, nick: 'Tomimartinez95', points: 74, tournaments: 4 },
+  { id: 4, nick: 'naty_la_25', points: 63, tournaments: 4 },
+  { id: 5, nick: 'FernandoPoratto', points: 56, tournaments: 4 },
+  { id: 6, nick: 'Hauffmann', points: 55, tournaments: 2 },
+  { id: 7, nick: 'MiyuKoto', points: 55, tournaments: 3 },
+  { id: 8, nick: 'grauclub', points: 53, tournaments: 4 },
+  { id: 9, nick: 'MTJRFAN2', points: 51, tournaments: 5 },
+  { id: 10, nick: 'Valeny', points: 46, tournaments: 5 },
+  { id: 11, nick: 'Pabameky', points: 43, tournaments: 3 },
+  { id: 12, nick: 'VozesTalentinho', points: 35, tournaments: 3 },
+  { id: 13, nick: 'ikeandas', points: 34, tournaments: 4 },
+  { id: 14, nick: 'dfarchich', points: 33, tournaments: 4 },
+  { id: 15, nick: 'Volvedor', points: 32, tournaments: 3 },
+  { id: 16, nick: 'Nicorita14', points: 31, tournaments: 2 },
+  { id: 17, nick: 'lukita121212', points: 28, tournaments: 3 },
+  { id: 18, nick: 'agustinbunes', points: 27, tournaments: 2 },
+  { id: 19, nick: 'Mcorda', points: 26, tournaments: 2 },
+  { id: 20, nick: 'buenamor1972', points: 24, tournaments: 1 },
+  { id: 21, nick: 'Ezetive3890', points: 24, tournaments: 2 },
+  { id: 22, nick: 'Belsebusky', points: 20, tournaments: 1 },
+  { id: 23, nick: 'onairam1', points: 19, tournaments: 2 },
+  { id: 24, nick: 'LORDSLYTHERIN', points: 17, tournaments: 1 },
+  { id: 25, nick: 'alekinee', points: 16, tournaments: 1 },
+  { id: 26, nick: 'nicootinaa', points: 15, tournaments: 2 },
+  { id: 27, nick: 'alex2018inf', points: 14, tournaments: 4 },
+  { id: 28, nick: 'poder-ozo', points: 14, tournaments: 4 },
   { id: 29, nick: 'FranCatalano', points: 13, tournaments: 3 },
-  { id: 30, nick: 'pulquijuan', points: 12, tournaments: 2 },
+  { id: 30, nick: 'pulquijuan', points: 12, tournaments: 3 },
   { id: 31, nick: 'VivaCFK', points: 10, tournaments: 1 },
   { id: 32, nick: 'Karuana', points: 10, tournaments: 1 },
-  { id: 33, nick: 'hengui', points: 6, tournaments: 1 },
-  { id: 34, nick: 'evaristom', points: 6, tournaments: 2 },
-  { id: 35, nick: 'onairam1', points: 5, tournaments: 1 },
-  { id: 36, nick: 'FuerzasArmadas', points: 5, tournaments: 2 },
-  { id: 37, nick: 'Mones6', points: 4, tournaments: 1 },
-  { id: 38, nick: 'lemniscata18', points: 3, tournaments: 1 },
-  { id: 39, nick: 'Estudio91', points: 3, tournaments: 1 },
-  { id: 40, nick: 'alocopernico', points: 2, tournaments: 1 },
-  { id: 41, nick: 'C5h6n2o2', points: 2, tournaments: 1 },
-  { id: 42, nick: 'manucho18', points: 2, tournaments: 1 },
-  { id: 43, nick: 'Lucio1993', points: 0, tournaments: 1 },
-  { id: 44, nick: 'chimillanes', points: 0, tournaments: 2 },
-  { id: 45, nick: 'jugador_79', points: 0, tournaments: 1 },
+  { id: 33, nick: 'AniVSV', points: 8, tournaments: 1 },
+  { id: 34, nick: 'Riakay', points: 6, tournaments: 1 },
+  { id: 35, nick: 'hengui', points: 6, tournaments: 1 },
+  { id: 36, nick: 'evaristom', points: 6, tournaments: 2 },
+  { id: 37, nick: 'FuerzasArmadas', points: 5, tournaments: 2 },
+  { id: 38, nick: 'chimillanes', points: 5, tournaments: 3 },
+  { id: 39, nick: 'Mones6', points: 4, tournaments: 1 },
+  { id: 40, nick: 'lemniscata18', points: 3, tournaments: 2 },
+  { id: 41, nick: 'Estudio91', points: 3, tournaments: 1 },
+  { id: 42, nick: 'alocopernico', points: 2, tournaments: 2 },
+  { id: 43, nick: 'C5h6n2o2', points: 2, tournaments: 1 },
+  { id: 44, nick: 'manucho18', points: 2, tournaments: 1 },
+  { id: 45, nick: 'Lucio1993', points: 0, tournaments: 1 },
+  { id: 46, nick: 'jugador_79', points: 0, tournaments: 1 },
 ];
 
 const tournamentDates = [
@@ -73,7 +75,7 @@ const tournamentDates = [
   { date: 2, day: '17 de Agosto', status: 'past', dayOfWeek: 'Lunes', time: '20:30', link: 'https://lichess.org/tournament/MxBsPRVH' },
   { date: 3, day: '23 de Agosto', status: 'past', link: 'https://lichess.org/tournament/IfsCbYsv' },
   { date: 4, day: '30 de Agosto', status: 'past', link: 'https://lichess.org/tournament/C4Jue0rf' },
-  { date: 5, day: '06 de Septiembre', status: 'upcoming', link: 'https://lichess.org/tournament/83kg4qfx' },
+  { date: 5, day: '06 de Septiembre', status: 'past', link: 'https://lichess.org/tournament/83kg4qfx' },
   { date: 6, day: '13 de Septiembre', status: 'upcoming', link: 'https://lichess.org/tournament/M06fBQuL' },
   { date: 7, day: '19 de Septiembre', status: 'upcoming', dayOfWeek: 'Sábado', time: '20:30', link: 'https://lichess.org/tournament/qaIVXjoY' },
   { date: 8, day: '27 de Septiembre', status: 'upcoming', link: 'https://lichess.org/tournament/EPN0fCN8' },
@@ -336,7 +338,7 @@ const GameOfTheWeek = () => (
         {/* Iframe interactivo de Lichess */}
         <div className="w-full max-w-2xl mx-auto rounded-lg overflow-hidden shadow-md bg-white">
           <iframe 
-            src="https://lichess.org/embed/nhFS0gVe?theme=auto&bg=auto"
+            src="https://lichess.org/embed/kMq27EXW?theme=auto&bg=auto"
             width="100%" 
             height="600" 
             frameBorder="0"
@@ -345,8 +347,8 @@ const GameOfTheWeek = () => (
         </div>
         
         <div className="mt-6 text-center">
-          <p className="text-lg font-semibold text-gray-800">VozesTalentinho vs. Ajedrezfacu</p>
-          <p className="text-gray-500 text-sm">Defensa Moderna</p>
+          <p className="text-lg font-semibold text-gray-800">Valeny vs. FernandoPoratto</p>
+          <p className="text-gray-500 text-sm">Defensa Pirc</p>
         </div>
       </div>
     </div>
