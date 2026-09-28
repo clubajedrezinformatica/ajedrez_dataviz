@@ -11,7 +11,9 @@ import {
   Camera,
   MessageSquare, 
   ChevronLeft, 
-  ChevronRight
+  ChevronRight,
+  Shield,
+  CalendarDays
 } from 'lucide-react';
 
 import logoDeportes from './assets/logo_deportes.jpg';
@@ -22,60 +24,58 @@ import logoInformatica from './assets/logo_fi.jpg';
 import fondoAjedrez from './assets/ajedrez-fondo-2.jpg'
 
 const initialPlayers = [
-  { id: 1, nick: 'Ajedrezfacu', points: 156, tournaments: 7 },
-  { id: 2, nick: 'MiyuKoto', points: 109, tournaments: 5 },
-  { id: 3, nick: 'FernandoPoratto', points: 86, tournaments: 6 },
-  { id: 4, nick: 'ninjago27', points: 84, tournaments: 3 },
-  { id: 5, nick: 'grauclub', points: 79, tournaments: 6 },
-  { id: 6, nick: 'naty_la_25', points: 75, tournaments: 5 },
-  { id: 7, nick: 'Tomimartinez95', points: 74, tournaments: 5 },
-  { id: 8, nick: 'MTJRFAN2', points: 67, tournaments: 7 },
-  { id: 9, nick: 'Valeny', points: 58, tournaments: 6 },
-  { id: 10, nick: 'Hauffmann', points: 55, tournaments: 2 },
-  { id: 11, nick: 'Pabameky', points: 55, tournaments: 4 },
-  { id: 12, nick: 'Nicorita14', points: 50, tournaments: 4 },
-  { id: 13, nick: 'ikeandas', points: 47, tournaments: 5 },
-  { id: 14, nick: 'dfarchich', points: 46, tournaments: 4 },
-  { id: 15, nick: 'VozesTalentinho', points: 44, tournaments: 4 },
-  { id: 16, nick: 'Mcorda', points: 34, tournaments: 3 },
-  { id: 17, nick: 'Volvedor', points: 32, tournaments: 3 },
-  { id: 18, nick: 'lukita121212', points: 28, tournaments: 3 },
-  { id: 19, nick: 'agustinbunes', points: 27, tournaments: 2 },
-  { id: 20, nick: 'onairam1', points: 33, tournaments: 4 },
-  { id: 21, nick: 'buenamor1972', points: 24, tournaments: 1 },
-  { id: 22, nick: 'Ezetive3890', points: 24, tournaments: 2 },
-  { id: 23, nick: 'Belsebusky', points: 20, tournaments: 1 },
-  { id: 24, nick: 'alex2018inf', points: 22, tournaments: 6 },
-  { id: 25, nick: 'LORDSLYTHERIN', points: 17, tournaments: 1 },
-  { id: 26, nick: 'alekinee', points: 16, tournaments: 1 },
-  { id: 27, nick: 'nicootinaa', points: 15, tournaments: 2 },
-  { id: 28, nick: 'poder-ozo', points: 14, tournaments: 4 },
-  { id: 29, nick: 'FranCatalano', points: 13, tournaments: 3 },
-  { id: 30, nick: 'pulquijuan', points: 12, tournaments: 3 },
-  { id: 331, nick: 'chimillanes', points: 11, tournaments: 4 },
-  { id: 32, nick: 'guillermoct', points: 10, tournaments: 1 },
-  { id: 33, nick: 'Sant2605', points: 10, tournaments: 1 },
-  { id: 34, nick: 'VivaCFK', points: 10, tournaments: 1 },
-  { id: 35, nick: 'Karuana', points: 10, tournaments: 1 },
-  { id: 36, nick: 'AniVSV', points: 14, tournaments: 2 },
+  { id: 1, nick: 'Ajedrezfacu', points: 163, tournaments: 8 },
+  { id: 2, nick: 'MiyuKoto', points: 118, tournaments: 6 },
+  { id: 3, nick: 'FernandoPoratto', points: 102, tournaments: 7 },
+  { id: 4, nick: 'grauclub', points: 95, tournaments: 7 },
+  { id: 5, nick: 'naty_la_25', points: 91, tournaments: 6 },
+  { id: 6, nick: 'ninjago27', points: 84, tournaments: 3 },
+  { id: 7, nick: 'Tomimartinez95', points: 79, tournaments: 6 },
+  { id: 8, nick: 'MTJRFAN2', points: 79, tournaments: 8 },
+  { id: 9, nick: 'Nicorita14', points: 77, tournaments: 5 },
+  { id: 10, nick: 'Pabameky', points: 65, tournaments: 5 },
+  { id: 12, nick: 'Valeny', points: 64, tournaments: 7 },
+  { id: 11, nick: 'ikeandas', points: 61, tournaments: 6 },
+  { id: 13, nick: 'dfarchich', points: 56, tournaments: 5 },
+  { id: 14, nick: 'Hauffmann', points: 55, tournaments: 2 },
+  { id: 15, nick: 'VozesTalentinho', points: 52, tournaments: 5 },
+  { id: 16, nick: 'Belsebusky', points: 40, tournaments: 2 },
+  { id: 17, nick: 'Volvedor', points: 40, tournaments: 4 },
+  { id: 18, nick: 'Mcorda', points: 34, tournaments: 3 },
+  { id: 19, nick: 'onairam1', points: 33, tournaments: 4 },
+  { id: 20, nick: 'lukita121212', points: 28, tournaments: 3 },
+  { id: 21, nick: 'agustinbunes', points: 27, tournaments: 2 },
+  { id: 22, nick: 'buenamor1972', points: 24, tournaments: 1 },
+  { id: 23, nick: 'Ezetive3890', points: 24, tournaments: 2 },
+  { id: 24, nick: 'AniVSV', points: 24, tournaments: 3 },
+  { id: 25, nick: 'alex2018inf', points: 22, tournaments: 6 },
+  { id: 26, nick: 'FranCatalano', points: 18, tournaments: 4 },
+  { id: 27, nick: 'LORDSLYTHERIN', points: 17, tournaments: 1 },
+  { id: 28, nick: 'alekinee', points: 16, tournaments: 1 },
+  { id: 29, nick: 'nicootinaa', points: 15, tournaments: 2 },
+  { id: 30, nick: 'poder-ozo', points: 14, tournaments: 4 },
+  { id: 31, nick: 'pulquijuan', points: 12, tournaments: 3 },
+  { id: 32, nick: 'chimillanes', points: 11, tournaments: 4 },
+  { id: 33, nick: 'guillermoct', points: 10, tournaments: 1 },
+  { id: 34, nick: 'Sant2605', points: 10, tournaments: 1 },
+  { id: 35, nick: 'VivaCFK', points: 10, tournaments: 1 },
+  { id: 36, nick: 'Karuana', points: 10, tournaments: 1 },
   { id: 37, nick: 'KbaYoLoco', points: 6, tournaments: 1 },
   { id: 38, nick: 'Riakay', points: 6, tournaments: 1 },
   { id: 39, nick: 'hengui', points: 6, tournaments: 1 },
   { id: 40, nick: 'evaristom', points: 6, tournaments: 2 },
   { id: 41, nick: 'FuerzasArmadas', points: 5, tournaments: 3 },
   { id: 42, nick: 'Mones6', points: 4, tournaments: 1 },
-  { id: 43, nick: 'lococabral', points: 3, tournaments: 1 },
-  { id: 44, nick: 'lemniscata18', points: 3, tournaments: 2 },
-  { id: 45, nick: 'Estudio91', points: 3, tournaments: 1 },
-  { id: 46, nick: 'C5h6n2o2', points: 2, tournaments: 1 },
-  { id: 47, nick: 'manucho18', points: 2, tournaments: 1 },
-  { id: 48, nick: 'alocopernico', points: 2, tournaments: 2 },
-  { id: 49, nick: 'jugador_79', points: 2, tournaments: 3 },
-  { id: 50, nick: 'Lucio1993', points: 0, tournaments: 1 },
-  { id: 51, nick: 'pereyrahector27arg', points: 0, tournaments: 1 },
-
-
-
+  { id: 43, nick: 'niklaus99', points: 3, tournaments: 1 },
+  { id: 44, nick: 'lococabral', points: 3, tournaments: 1 },
+  { id: 45, nick: 'lemniscata18', points: 3, tournaments: 2 },
+  { id: 46, nick: 'Estudio91', points: 3, tournaments: 1 },
+  { id: 47, nick: 'C5h6n2o2', points: 2, tournaments: 1 },
+  { id: 48, nick: 'manucho18', points: 2, tournaments: 1 },
+  { id: 49, nick: 'alocopernico', points: 2, tournaments: 2 },
+  { id: 50, nick: 'jugador_79', points: 2, tournaments: 3 },
+  { id: 51, nick: 'Lucio1993', points: 0, tournaments: 1 },
+  { id: 52, nick: 'pereyrahector27arg', points: 0, tournaments: 1 },
 ];
 
 const tournamentDates = [
@@ -86,7 +86,7 @@ const tournamentDates = [
   { date: 5, day: '06 de Septiembre', status: 'past', link: 'https://lichess.org/tournament/83kg4qfx' },
   { date: 6, day: '13 de Septiembre', status: 'past', link: 'https://lichess.org/tournament/M06fBQuL' },
   { date: 7, day: '19 de Septiembre', status: 'past', dayOfWeek: 'Sábado', time: '20:30', link: 'https://lichess.org/tournament/qaIVXjoY' },
-  { date: 8, day: '27 de Septiembre', status: 'upcoming', link: 'https://lichess.org/tournament/EPN0fCN8' },
+  { date: 8, day: '27 de Septiembre', status: 'past', link: 'https://lichess.org/tournament/EPN0fCN8' },
 ];
 
 // --- COMPONENTES ---
@@ -144,7 +144,6 @@ const Header = () => {
 };
 
 const HeroSection = ({ dates }) => {
-  // Busca el próximo torneo activo
   const nextTournament = dates?.find(t => t.status === 'upcoming');
 
   return (
@@ -169,7 +168,6 @@ const HeroSection = ({ dates }) => {
           </p>
         </div>
 
-        {/* Tarjeta Destacada del Próximo Torneo */}
         {nextTournament && (
           <div className="max-w-md mx-auto bg-white rounded-xl shadow-2xl overflow-hidden border-2 border-blue-400 transform transition-transform hover:scale-105">
             <div className="bg-blue-600 px-4 py-2 flex items-center justify-center gap-2">
@@ -200,6 +198,67 @@ const HeroSection = ({ dates }) => {
     </section>
   );
 };
+
+<section className="bg-gradient-to-br from-blue-900 to-blue-950 text-white">
+  <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 text-center">
+    
+    {/* Badge superior */}
+    <div className="inline-flex items-center justify-center bg-blue-800 border border-blue-700 rounded-full px-4 py-1 mb-6">
+      <Crown className="w-4 h-4 text-yellow-400 mr-2" />
+      <span className="text-xs sm:text-sm font-semibold text-blue-200 uppercase tracking-widest">
+        Etapa Definitiva
+      </span>
+    </div>
+
+    {/* Título Principal */}
+    <h2 className="text-3xl sm:text-5xl font-extrabold mb-4 tracking-tight">
+      Gran Final por Matches
+    </h2>
+
+    {/* Fecha */}
+    <div className="flex items-center justify-center gap-2 text-blue-300 mb-10">
+      <CalendarDays className="w-5 h-5" />
+      <p className="text-lg sm:text-xl font-medium">A jugarse en Octubre - Noviembre</p>
+    </div>
+
+    {/* Contenedor de las Llaves */}
+    <div className="bg-blue-800/40 border border-blue-700 rounded-xl p-6 sm:p-8 backdrop-blur-sm">
+      <p className="text-gray-200 text-base sm:text-lg mb-8 max-w-2xl mx-auto">
+        El campeón del <span className="font-bold text-white">Prix Online UNLP</span> se consagrará mediante un sistema de doble eliminación.
+      </p>
+      
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-3xl mx-auto">
+        {/* Llave de Ganadores */}
+        <div className="bg-blue-900/60 border border-blue-700/50 rounded-lg p-5 flex flex-col items-center text-center shadow-lg">
+          <div className="bg-blue-700 p-3 rounded-full mb-4">
+            <Swords className="w-7 h-7 text-yellow-400" />
+          </div>
+          <h4 className="text-lg font-bold text-white mb-1">Llave de Ganadores</h4>
+          <p className="text-sm text-blue-300">
+            Los cruces directos al título. Quien pierde aquí desciende a la llave de consolación.
+          </p>
+        </div>
+
+        {/* Llave de Perdedores */}
+        <div className="bg-blue-900/60 border border-blue-700/50 rounded-lg p-5 flex flex-col items-center text-center shadow-lg">
+          <div className="bg-blue-700 p-3 rounded-full mb-4">
+            <Shield className="w-7 h-7 text-blue-200" />
+          </div>
+          <h4 className="text-lg font-bold text-white mb-1">Llave de Perdedores</h4>
+          <p className="text-sm text-blue-300">
+            La segunda oportunidad. El ganador de esta llave se reencuentra con el finalista invicto.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    {/* Texto de cierre de sección */}
+    <p className="mt-10 text-lg sm:text-xl font-semibold text-yellow-400 uppercase tracking-wide">
+      La consagración del Campeón Universitario
+    </p>
+  </div>
+</section>
+
 
 const StandingsTable = ({ players }) => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -346,7 +405,7 @@ const GameOfTheWeek = () => (
         {/* Iframe interactivo de Lichess */}
         <div className="w-full max-w-2xl mx-auto rounded-lg overflow-hidden shadow-md bg-white">
           <iframe 
-            src="https://lichess.org/embed/aXtf6JrR?theme=auto&bg=auto"
+            src="https://lichess.org/embed/14KLOQq3?theme=auto&bg=auto"
             width="100%" 
             height="600" 
             frameBorder="0"
@@ -355,8 +414,8 @@ const GameOfTheWeek = () => (
         </div>
         
         <div className="mt-6 text-center">
-          <p className="text-lg font-semibold text-gray-800">Nicorita14 vs. MiyuKoto</p>
-          <p className="text-gray-500 text-sm">Peón Dama</p>
+          <p className="text-lg font-semibold text-gray-800">FernandoPoratto vs. Nicorita14</p>
+          <p className="text-gray-500 text-sm">Ataque Indio de Rey</p>
         </div>
       </div>
     </div>
