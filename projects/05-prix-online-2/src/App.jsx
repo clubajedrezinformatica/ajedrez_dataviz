@@ -469,10 +469,10 @@ export default function App() {
       <Header />
       <main>
         <GrandFinalNotice />
-        <HeroSection dates={tournamentDates} />
+        {/*<HeroSection dates={tournamentDates} />*/}
         <StandingsTable players={players} />
-        <GameOfTheWeek />
-        <Calendar dates={tournamentDates} />
+        {/*<GameOfTheWeek />*/}
+        {/* <Calendar dates={tournamentDates} /> */}
       </main>
       <Footer />
     </div>
