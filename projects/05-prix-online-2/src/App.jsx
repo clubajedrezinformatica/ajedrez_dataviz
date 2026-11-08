@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import GrandFinalNotice from './components/GrandFinalNotice';
+import PerformanceStatsSection from './components/PerformanceStatsSection';
+import BracketSection from './components/BracketSection';
+
 import {
   Trophy,
   Calendar as CalendarIcon,
@@ -14,7 +17,9 @@ import {
   ChevronLeft, 
   ChevronRight,
   Shield,
-  CalendarDays
+  CalendarDays,
+  Menu, 
+  X
 } from 'lucide-react';
 
 import logoDeportes from './assets/logo_deportes.jpg';
@@ -23,6 +28,8 @@ import logoAjedrezInfo from './assets/logo_cadi.jpeg';
 import logoUNLP from './assets/logo_unlp.png';
 import logoInformatica from './assets/logo_fi.jpg';
 import fondoAjedrez from './assets/ajedrez-fondo-2.jpg'
+
+const qualifiedIds = [1, 2, 3, 7, 9, 10, 11, 12];
 
 const initialPlayers = [
   { id: 1, nick: 'Ajedrezfacu', points: 163, tournaments: 8 },
@@ -35,8 +42,8 @@ const initialPlayers = [
   { id: 8, nick: 'MTJRFAN2', points: 79, tournaments: 8 },
   { id: 9, nick: 'Nicorita14', points: 77, tournaments: 5 },
   { id: 10, nick: 'Pabameky', points: 65, tournaments: 5 },
-  { id: 12, nick: 'Valeny', points: 64, tournaments: 7 },
-  { id: 11, nick: 'ikeandas', points: 61, tournaments: 6 },
+  { id: 11, nick: 'Valeny', points: 64, tournaments: 7 },
+  { id: 12, nick: 'ikeandas', points: 61, tournaments: 6 },
   { id: 13, nick: 'dfarchich', points: 56, tournaments: 5 },
   { id: 14, nick: 'Hauffmann', points: 55, tournaments: 2 },
   { id: 15, nick: 'VozesTalentinho', points: 52, tournaments: 5 },
@@ -94,6 +101,7 @@ const tournamentDates = [
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -104,18 +112,23 @@ const Header = () => {
   }, []);
 
   const logos = [
-    { src: logoDeportes, alt: 'Deportes UNLP' },
     { src: logoInformatica, alt: 'Facultad de Informática' },
     { src: logoUNLP, alt: 'UNLP' },
     { src: logoAjedrezInfo, alt: 'Ajedrez Info' },
-    { src: logoAjedrez, alt: 'Ajedrez UNLP' }
+  ];
+
+  const navLinks = [
+    { href: '#llave', label: 'Fase Final' },
+    { href: '#tabla', label: 'Fase Clasificatoria' },
+    { href: '#estadisticas', label: 'Estadísticas' },
   ];
 
   return (
     <header className="bg-white shadow-sm sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
         <div className="flex flex-wrap justify-between items-center gap-4">
-          <div className="flex flex-wrap items-center gap-6">
+          {/* Logos a la izquierda */}
+          <div className="flex flex-wrap items-center gap-4 sm:gap-6">
             {logos.map((logo, i) => (
               <img 
                 key={i} 
@@ -125,8 +138,46 @@ const Header = () => {
               />
             ))}
           </div>
+
+          {/* Navbar a la derecha (desktop) */}
+          <nav className="hidden md:flex items-center gap-1">
+            {navLinks.map((link) => (
+              <a 
+                key={link.href} 
+                href={link.href}
+                className="px-4 py-2 text-sm font-semibold text-gray-600 hover:text-blue-800 hover:bg-blue-50 rounded-lg transition-colors"
+              >
+                {link.label}
+              </a>
+            ))}
+          </nav>
+
+          {/* Botón hamburguesa (mobile) */}
+          <button 
+            className="md:hidden p-2 text-gray-600 hover:bg-gray-100 rounded-lg"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Menú"
+          >
+            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
         </div>
         
+        {/* Menú mobile desplegable */}
+        {mobileMenuOpen && (
+          <nav className="md:hidden flex flex-col gap-1 py-3 border-t border-gray-100 mt-3">
+            {navLinks.map((link) => (
+              <a 
+                key={link.href} 
+                href={link.href}
+                onClick={() => setMobileMenuOpen(false)}
+                className="px-4 py-2 text-sm font-semibold text-gray-600 hover:text-blue-800 hover:bg-blue-50 rounded-lg transition-colors"
+              >
+                {link.label}
+              </a>
+            ))}
+          </nav>
+        )}
+
         {/* Contenedor del título con transición */}
         <div 
           className={`overflow-hidden transition-all duration-700 ease-in-out ${
@@ -234,7 +285,7 @@ const StandingsTable = ({ players }) => {
               <tbody className="bg-white divide-y divide-gray-100">
                 {currentPlayers.map((player, index) => {
                   const realIndex = indexOfFirstPlayer + index;
-                  const isQualified = realIndex < 8;
+                  const isQualified = qualifiedIds.includes(player.id);
                   return (
                     <tr key={player.id} className={`${isQualified ? 'bg-green-200' : 'bg-white'} hover:bg-gray-50 transition-colors`}>
                       <td className="px-4 py-4 whitespace-nowrap text-sm font-bold text-gray-900">
@@ -252,11 +303,11 @@ const StandingsTable = ({ players }) => {
                       <td className="px-4 py-4 whitespace-nowrap hidden md:table-cell">
                         {isQualified ? (
                           <span className="px-2 inline-flex items-center gap-1 text-xs font-semibold rounded-full bg-green-100 text-green-800">
-                            <CircleCheck className="w-3 h-3" /> Zona de Clasificación
+                            <CircleCheck className="w-3 h-3" /> Clasificado a la Final
                           </span>
                         ) : (
                           <span className="px-2 inline-flex text-xs font-semibold rounded-full bg-gray-100 text-gray-500">
-                            Eliminado
+                            
                           </span>
                         )}
                       </td>
@@ -469,8 +520,10 @@ export default function App() {
       <Header />
       <main>
         <GrandFinalNotice />
+        <BracketSection />
         {/*<HeroSection dates={tournamentDates} />*/}
         <StandingsTable players={players} />
+        <PerformanceStatsSection players={players} />
         {/*<GameOfTheWeek />*/}
         {/* <Calendar dates={tournamentDates} /> */}
       </main>

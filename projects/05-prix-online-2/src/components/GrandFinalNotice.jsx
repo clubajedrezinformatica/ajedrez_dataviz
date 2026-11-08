@@ -23,7 +23,7 @@ const GrandFinalNotice = () => {
         {/* Fecha */}
         <div className="flex items-center justify-center gap-2 text-blue-300 mb-10">
           <CalendarDays className="w-5 h-5" />
-          <p className="text-lg sm:text-xl font-medium">Este Noviembre</p>
+          <p className="text-lg sm:text-xl font-medium">Este 14 de Noviembre</p>
         </div>
 
         {/* Contenedor de las Llaves */}
