@@ -29,14 +29,14 @@ const winnersBracket = [
   {
     round: 'Semifinales',
     matches: [
-      { label: null, p1: TBD, p2: TBD },
-      { label: null, p1: TBD, p2: TBD },
+      { label: 'SF1', p1: {nick: 'Ganador A', seed: null}, p2: { nick: 'Ganador B', seed: null } },
+      { label: 'SF2', p1: {nick: 'Ganador C', seed: null}, p2: { nick: 'Ganador D', seed: null } },
     ]
   },
   {
     round: 'Final Ganadores',
     matches: [
-      { label: null, p1: TBD, p2: TBD },
+      { label: "F1", p1: {nick: 'Ganador SF1', seed: null}, p2: { nick: 'Ganador SF2', seed: null } },
     ]
   }
 ];
@@ -46,27 +46,27 @@ const losersBracket = [
   {
     round: 'Ronda 1',
     matches: [
-      { label: null, p1: TBD, p2: TBD },
-      { label: null, p1: TBD, p2: TBD },
+      { label: 'R1', p1: {nick: 'Perdedor A', seed: null}, p2: { nick: 'Perdedor B', seed: null } },
+      { label: 'R2', p1: {nick: 'Perdedor C', seed: null}, p2: { nick: 'Perdedor D', seed: null } }
     ]
   },
   {
     round: 'Ronda 2',
     matches: [
-      { label: null, p1: TBD, p2: TBD },
-      { label: null, p1: TBD, p2: TBD },
+      { label: 'R3', p1: {nick: 'Ganador R1', seed: null}, p2: {nick: 'Perdedor SF2', seed: null} },
+      { label: 'R4', p1: {nick: 'Ganador R2', seed: null}, p2: { nick: 'Perdedor SF1', seed: null } },
     ]
   },
   {
     round: 'Semifinal',
     matches: [
-      { label: null, p1: TBD, p2: TBD },
+      { label: 'R5', p1: {nick: 'Ganador R3', seed: null}, p2: {nick: 'Ganador R4', seed: null} },
     ]
   },
   {
     round: 'Final Perdedores',
     matches: [
-      { label: null, p1: TBD, p2: TBD },
+      { label: 'F2', p1: {nick: 'Ganador R5', seed: null}, p2: {nick: 'Perdedor F1', seed: null} },
     ]
   }
 ];
