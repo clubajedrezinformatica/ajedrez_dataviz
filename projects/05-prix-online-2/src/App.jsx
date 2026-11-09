@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import GrandFinalNotice from './components/GrandFinalNotice';
 import PerformanceStatsSection from './components/PerformanceStatsSection';
 import BracketSection from './components/BracketSection';
+import TwitchSection from './components/TwitchSection';
 
 import {
   Trophy,
@@ -121,6 +122,7 @@ const Header = () => {
     { href: '#llave', label: 'Fase Final' },
     { href: '#tabla', label: 'Fase Clasificatoria' },
     { href: '#estadisticas', label: 'Estadísticas' },
+    { href: '#en-vivo', label: 'En Vivo' },
   ];
 
   return (
@@ -524,6 +526,7 @@ export default function App() {
         {/*<HeroSection dates={tournamentDates} />*/}
         <StandingsTable players={players} />
         <PerformanceStatsSection players={players} />
+        <TwitchSection />
         {/*<GameOfTheWeek />*/}
         {/* <Calendar dates={tournamentDates} /> */}
       </main>

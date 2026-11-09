@@ -20,10 +20,10 @@ const winnersBracket = [
   {
     round: 'Cuartos',
     matches: [
-      { label: 'A', p1: TBD, p2: TBD },
-      { label: 'B', p1: TBD, p2: TBD },
-      { label: 'C', p1: TBD, p2: TBD },
-      { label: 'D', p1: TBD, p2: TBD },
+      { label: 'A', p1: finalists[0], p2: finalists[6] },
+      { label: 'B', p1: finalists[3], p2: finalists[7] },
+      { label: 'C', p1: finalists[1], p2: finalists[4] },
+      { label: 'D', p1: finalists[2], p2: finalists[5] },
     ]
   },
   {
@@ -95,7 +95,7 @@ const MatchCard = ({ match, accentColor = 'blue' }) => {
     <div className={`bg-white/5 backdrop-blur-sm border ${borderClass} rounded-lg p-2 shadow-md w-[175px] sm:w-[190px] transition-all hover:bg-white/10`}>
       {match.label && (
         <div className="text-[10px] font-bold text-blue-300 mb-1 text-center uppercase tracking-wider">
-          Partido {match.label}
+          Match {match.label}
         </div>
       )}
       <div className="flex items-center gap-2 p-1 rounded">
