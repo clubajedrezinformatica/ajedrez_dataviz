@@ -33,7 +33,7 @@ const qualifiedIds = [1, 2, 3, 7, 9, 10, 11, 12];
 
 const initialPlayers = [
   { id: 1, nick: 'Ajedrezfacu', points: 163, tournaments: 8 },
-  { id: 2, nick: 'MiyuKoto', points: 118, tournaments: 6 },
+  { id: 2, nick: 'MiyuKoto', points: 108, tournaments: 6 },
   { id: 3, nick: 'FernandoPoratto', points: 102, tournaments: 7 },
   { id: 4, nick: 'grauclub', points: 95, tournaments: 7 },
   { id: 5, nick: 'naty_la_25', points: 91, tournaments: 6 },
